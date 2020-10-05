@@ -37,7 +37,7 @@ const UserDAO = function () {
     };
 
     this.findAll = function (callback) {
-        db.run("SELECT * FROM Sportsman");
+        db.all("SELECT * FROM Sportsman", [], callback);
     };
 
     this.findByKey = function (key, callback) {

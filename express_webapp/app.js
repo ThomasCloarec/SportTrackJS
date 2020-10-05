@@ -38,7 +38,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var users = require('./routes/users');
-app.use('/users',users);
-
 module.exports = app;
