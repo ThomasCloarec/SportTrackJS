@@ -1,4 +1,6 @@
 const user_dao = require('./sport-track-db').user_dao;
+const activity_dao = require('./sport-track-db').activity_dao;
+const activity_entry_dao = require('./sport-track-db').activity_entry_dao;
 const db = require('./sport-track-db').db_connection;
 
 class Sportsman {
@@ -46,8 +48,17 @@ activity.firstName = "Dang";
 activity.lastName = "Ding";
 user_dao.update(activity.email, activity, value => console.log(value))
 user_dao.findAll(value => console.log(value))
+sportsman = new Sportsman("a@a.com", "John", "Doe", null, "Homme", 180, 80, "Test")
+user_dao.insert(sportsman, null);
 
 // Test Activity
+
+activity_dao.deleteAll()
+activity = new Activity("a@a.com", "19/07/2020", "IUT->RU", "250");
+activity_dao.insert(activity, null);
+
+activity.sportsman = "testglai.com";
+activity.update()
 
 
 // Test ActivityEntry
