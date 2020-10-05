@@ -9,7 +9,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var connectRouter = require('./routes/connect');
-var connectRouter = require('./routes/error');
+var errorRouter = require('./routes/error');
 
 // app instanciation
 var app = express();
@@ -21,6 +21,12 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }));
+
+/*app.dynamicHelpers({
+  session: function (req, res) {
+    return req.session;
+  }
+});*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
