@@ -16,11 +16,12 @@ const UserDAO = function () {
     };
 
     this.update = function (key, values, callback) {
-        db.run("UPDATE Sportsman SET email = ?, firstName = ?, lastName = ?",
+        db.run("UPDATE Sportsman SET email = ?, firstName = ?, lastName = ? WHERE email = ?",
             [
                 values.email,
                 values.firstName,
-                values.lastName
+                values.lastName,
+                key
             ]);
     };
 

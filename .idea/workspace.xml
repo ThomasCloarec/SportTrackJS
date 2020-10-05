@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="2c70b978-7c5e-4c16-9562-a43eefaf5a2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/activity_dao.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/activity_entry_dao.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/create_db.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sport-track-db-test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sport-track-db.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sport_track.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sqlite_connection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/user_dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/express_webapp/node_modules/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/node_modules/express/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/express_webapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_entry_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_entry_dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/sport-track-db-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/sport-track-db-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/user_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/user_dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +90,17 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="1327" y="391" width="215" height="333" key="#File_Watchers" timestamp="1601881122888">
       <screen x="0" y="29" width="1920" height="1051" />
@@ -104,5 +126,9 @@
       <screen x="0" y="29" width="1920" height="1051" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.29.1920.1051@0.29.1920.1051" timestamp="1601882020954" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601889850540">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601889850540" />
   </component>
 </project>
