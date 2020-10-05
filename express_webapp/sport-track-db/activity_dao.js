@@ -2,23 +2,25 @@ const db = require('./sqlite_connection');
 
 const ActivityDAO = function () {
     this.insert = function (values, callback) {
-        db.run("INSERT INTO Activity(sportsman, day, description, totalDistance) VALUES (?, ?, ?, ?)",
+        console.log(values)
+        db.run("INSERT OR IGNORE INTO Activity(sportsman, day, description, totalDistance) VALUES (?, ?, ?, ?)",
             [
                 values.sportsman,
                 values.day,
                 values.description,
-                values.totaleDistance
+                values.totalDistance
             ],
             callback
         );
     };
 
     this.update = function (key, values, callback) {
-        db.run("UPDATE Activity SET sportsman = ?, day = ?, description = ? where idActivity = ?",
+        db.run("UPDATE Activity SET sportsman = ?, day = ?, description = ?, totalDistance = ? where idActivity = ?",
             [
                 values.sportsman,
                 values.day,
                 values.description,
+                values.totalDistance,
                 key
             ],
             callback
@@ -26,7 +28,7 @@ const ActivityDAO = function () {
     };
 
     this.deleteAll = function (callback) {
-        db.run("DELETE FROM Activity");
+        db.run("DELETE FROM Activity", callback);
     }
 
     this.delete = function (key, callback) {

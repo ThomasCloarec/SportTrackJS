@@ -40,20 +40,22 @@ class ActivityEntry {
 
 user_dao.insert(new Sportsman("testglai.com", "John", "Doe", null, "Homme", 180, 80, "Test"), (error, value) => console.log(value));
 
-activity = new Sportsman("a@a.com", "Hehe", "Doe", null, "Homme", 180, 80, "Test")
-user_dao.insert(activity, (error, value) => console.log(value));
+const sportsman = new Sportsman("a@a.com", "Hehe", "Doe", null, "Homme", 180, 80, "Test")
+user_dao.insert(sportsman, (error, value) => console.log(value));
 
-activity.firstName = "Dang";
-activity.lastName = "Ding";
-user_dao.update(activity.email, activity, (error, value) => console.log(value))
-user_dao.findAll((error, rows) => console.log(rows))
+sportsman.firstName = "Dang";
+sportsman.lastName = "Ding";
+user_dao.update(sportsman.email, sportsman, (error, value) => console.log(value))
+// user_dao.findAll((error, rows) => console.log(rows))
 
 
 // Test Activity
 
-activity_dao.deleteAll()
-activity = new Activity("a@a.com", "19/07/2020", "IUT->RU", 250);
-activity_dao.insert(activity, null);
+const activity = new Activity("a@a.com", "19/07/2020", "IUT->RU", 250);
+activity_dao.insert(activity, (error, value) => console.log(value));
+
+activity_dao.findAll((error, rows) => console.log(rows))
+
 
 
 

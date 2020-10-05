@@ -2,7 +2,7 @@ const db = require('./sqlite_connection');
 
 const ActivityEntryDAO = function () {
     this.insert = function (values, callback) {
-        db.run("INSERT INTO ActivityEntry(activity, timeD, cardioFrequency, latitude, longitude, altitude) values (?, ?, ?, ?, ?, ?)",
+        db.run("INSERT OR IGNORE INTO ActivityEntry(activity, timeD, cardioFrequency, latitude, longitude, altitude) values (?, ?, ?, ?, ?, ?)",
             [
                 values.activity,
                 values.timeD,
@@ -44,7 +44,7 @@ const ActivityEntryDAO = function () {
     };
 
     this.findAll = function (callback) {
-        db.run("SELECT * FROM ActivityEntry");
+        db.run("SELECT * FROM ActivityEntry", callback);
     };
 
     this.findByKey = function (key, callback) {
