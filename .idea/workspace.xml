@@ -2,32 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c70b978-7c5e-4c16-9562-a43eefaf5a2a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/SportTrackJS.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/create_db.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/sport-track-db-test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/sport-track-db.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/sport_track.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/sqlite_connection.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/user_dao.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/express_webapp/views/users.jade" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fonctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/fonctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objet.js" beforeDir="false" afterPath="$PROJECT_DIR$/objet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/objetbis.js" beforeDir="false" afterPath="$PROJECT_DIR$/objetbis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sport-track-db/activity_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sport-track-db/activity_entry_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_entry_dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sport-track-db/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sport-track-db/sport-track-db-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sport-track-db/sport-track-db.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sport-track-db/sqlite_connection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sport-track-db/user_dao.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/activity_dao.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/activity_entry_dao.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/create_db.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sport-track-db-test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sport-track-db.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sport_track.db" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/sqlite_connection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/express_webap/sport-track-db/user_dao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express_webapp/node_modules/express/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/node_modules/express/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express_webapp/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +44,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.19.0" />
     <property name="javascript.nodejs.core.library.typings.version" value="10.17.35" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/sport-track-db/db" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/express_webap" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="settings.nodejs" />
@@ -73,6 +59,7 @@
       <recent name="$PROJECT_DIR$/sport-track-db" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/express_webap" />
       <recent name="$PROJECT_DIR$/sport-track-db/db" />
     </key>
   </component>
@@ -85,7 +72,7 @@
       <option name="presentableId" value="Default" />
       <updated>1601854181755</updated>
       <workItem from="1601854183380" duration="2840000" />
-      <workItem from="1601879576758" duration="5316000" />
+      <workItem from="1601879576758" duration="7581000" />
     </task>
     <servers />
   </component>
