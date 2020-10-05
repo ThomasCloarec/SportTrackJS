@@ -13,7 +13,16 @@ router.get('/', function (req, res, next) {
                 if (activity_entry_err !== null) {
                     console.log("ERROR= " + activity_entry_err);
                 } else {
-                    res.render('users', {data: activity_entry_rows});
+                    activity_rows.forEach((activity) => {
+                        activity.entries = []
+                        activity_entry_rows.forEach((activity_entry) => {
+                            if (activity_entry.activity === activity.idActivity) {
+                                activity.entries.add(activity_entry)
+                            }
+                        })
+                    })
+                    console.log(activity_rows)
+                    res.render('activities', {data: activity_rows});
                 }
             })
         }

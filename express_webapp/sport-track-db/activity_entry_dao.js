@@ -11,7 +11,13 @@ const ActivityEntryDAO = function () {
                 values.longitude,
                 values.altitude
             ],
-            callback
+            function (err) {
+                if (null == err) {
+                    callback(err, this.lastID);
+                } else {
+                    console.log(err);
+                }
+            }
         );
     };
 
@@ -44,7 +50,7 @@ const ActivityEntryDAO = function () {
     };
 
     this.findAll = function (callback) {
-        db.run("SELECT * FROM ActivityEntry", callback);
+        db.all("SELECT * FROM ActivityEntry", callback);
     };
 
     this.findByKey = function (key, callback) {

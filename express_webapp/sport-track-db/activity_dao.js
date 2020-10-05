@@ -2,16 +2,23 @@ const db = require('./sqlite_connection');
 
 const ActivityDAO = function () {
     this.insert = function (values, callback) {
-        console.log(values)
-        db.run("INSERT OR IGNORE INTO Activity(sportsman, day, description, totalDistance) VALUES (?, ?, ?, ?)",
+        db.run("INSERT OR IGNORE INTO Activity (sportsman, day, description, totalDistance) VALUES (?, ?, ?, ?)",
             [
                 values.sportsman,
                 values.day,
                 values.description,
                 values.totalDistance
             ],
-            callback
+            function (err) {
+                if (null == err) {
+                    callback(err, this.lastID);
+                } else {
+                    console.log(err);
+                }
+            }
         );
+
+        console.log(this.lastID)
     };
 
     this.update = function (key, values, callback) {
@@ -50,11 +57,11 @@ const ActivityDAO = function () {
     };
 
     this.findAll = function (callback) {
-        db.run("SELECT * FROM Activity", callback);
+        db.all("SELECT * FROM Activity", callback);
     };
 
     this.findAllFromSportsman = function (key, callback) {
-        db.run("SELECT * FROM Activity WHERE sportsman = ?",
+        db.all("SELECT * FROM Activity WHERE sportsman = ?",
             [
                 key
             ],
@@ -63,7 +70,7 @@ const ActivityDAO = function () {
     };
 
     this.findDistanceSumFromDistance = function (key, callback) {
-        db.run("SELECT SUM(totalDistance) FROM Activity WHERE sportsman = ?",
+        db.get("SELECT SUM(totalDistance) FROM Activity WHERE sportsman = ?",
             [
                 key
             ],
@@ -72,7 +79,7 @@ const ActivityDAO = function () {
     };
 
     this.findByKey = function (key, callback) {
-        db.run("SELECT * FROM Activity WHERE idACtivity = ?",
+        db.get("SELECT * FROM Activity WHERE idACtivity = ?",
             [
                 key
             ],
