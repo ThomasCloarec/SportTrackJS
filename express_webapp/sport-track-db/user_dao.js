@@ -12,7 +12,8 @@ const UserDAO = function () {
                 values.height,
                 values.weight,
                 values.pwd
-            ]);
+            ],
+            callback);
     };
 
     this.update = function (key, values, callback) {
@@ -21,19 +22,20 @@ const UserDAO = function () {
                 values.email,
                 values.firstName,
                 values.lastName
-            ]);
+            ],
+            callback);
     };
 
     this.deleteAll = function (callback) {
-        db.run("DELETE FROM Sportsman");
+        db.run("DELETE FROM Sportsman", callback);
     }
 
     this.delete = function (key, callback) {
         db.run("DELETE FROM Sportsman WHERE email = ?",
             [
                 key
-            ]
-        );
+            ],
+            callback);
     };
 
     this.findAll = function (callback) {
@@ -41,10 +43,11 @@ const UserDAO = function () {
     };
 
     this.findByKey = function (key, callback) {
-        db.run("SELECT * FROM Sportsman WHERE email = ?",
+        db.get("SELECT * FROM Sportsman WHERE email = ?",
             [
                 key
-            ]);
+            ],
+            callback);
     };
 };
 

@@ -36,16 +36,16 @@ class ActivityEntry {
 
 // Test Sportsman
 
-user_dao.deleteAll()
-user_dao.insert(new Sportsman("testglai.com", "John", "Doe", null, "Homme", 180, 80, "Test"), null);
+user_dao.deleteAll(value => console.log(value))
+user_dao.insert(new Sportsman("testglai.com", "John", "Doe", null, "Homme", 180, 80, "Test"), value => console.log(value));
 
 activity = new Sportsman("a@a.com", "John", "Doe", null, "Homme", 180, 80, "Test")
-user_dao.insert(activity, null);
+user_dao.insert(activity, value => console.log(value));
 
 activity.firstName = "Dang";
 activity.lastName = "Ding";
-user_dao.update(activity.email, activity, null)
-console.log(user_dao.findAll())
+user_dao.update(activity.email, activity, value => console.log(value))
+user_dao.findAll(value => console.log(value))
 
 // Test Activity
 

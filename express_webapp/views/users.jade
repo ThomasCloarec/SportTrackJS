@@ -7,12 +7,22 @@ html
         table(border='1')
             thead
                 tr
-                    th Nom
-                    th Prénom
-                    th Date de naissance
+                    th email
+                    th firstName
+                    th lastName
+                    th birthday
+                    th gender
+                    th height
+                    th weight
+                    th pwd
             tbody
                 each val in data
                     tr
                         td= val.email
                         td= val.firstName
                         td= val.lastName
+                        td= val.birthday
+                        td= val.gender
+                        td= val.height
+                        td= val.weight
+                        td= val.pwd
