@@ -7,7 +7,7 @@ router.get('/', function (req, res, next) {
         if (err != null) {
             console.log("ERROR= " + err);
         } else {
-            res.render('users', {data: rows});
+            res.render('connect');
         }
     });
 });
@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
         if (err != null) {
             console.log("ERROR= " + err);
         } else {
-            res.render('users', {data: rows});
+            res.render('connect');
         }
     });
 });
