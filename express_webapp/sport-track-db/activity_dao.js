@@ -8,7 +8,9 @@ const ActivityDAO = function () {
                 values.day,
                 values.description,
                 values.totaleDistance
-            ]);
+            ],
+            callback
+        );
     };
 
     this.update = function (key, values, callback) {
@@ -18,7 +20,9 @@ const ActivityDAO = function () {
                 values.day,
                 values.description,
                 key
-            ]);
+            ],
+            callback
+        );
     };
 
     this.deleteAll = function (callback) {
@@ -29,7 +33,8 @@ const ActivityDAO = function () {
         db.run("DELETE FROM Activity WHERE idActivity = ?",
             [
                 key
-            ]
+            ],
+            callback
         );
     };
 
@@ -37,19 +42,21 @@ const ActivityDAO = function () {
         db.run("DELETE FROM ACtivity WHERE sportsman = ?",
             [
                 key
-            ]
+            ],
+            callback
         );
     };
 
     this.findAll = function (callback) {
-        db.run("SELECT * FROM Activity");
+        db.run("SELECT * FROM Activity", callback);
     };
 
     this.findAllFromSportsman = function (key, callback) {
         db.run("SELECT * FROM Activity WHERE sportsman = ?",
             [
                 key
-            ]
+            ],
+            callback
         );
     };
 
@@ -57,7 +64,8 @@ const ActivityDAO = function () {
         db.run("SELECT SUM(totalDistance) FROM Activity WHERE sportsman = ?",
             [
                 key
-            ]
+            ],
+            callback
         );
     };
 
@@ -65,7 +73,9 @@ const ActivityDAO = function () {
         db.run("SELECT * FROM Activity WHERE idACtivity = ?",
             [
                 key
-            ]);
+            ],
+            callback
+        );
     };
 };
 

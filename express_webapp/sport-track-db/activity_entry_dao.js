@@ -10,7 +10,9 @@ const ActivityEntryDAO = function () {
                 values.latitude,
                 values.longitude,
                 values.altitude
-            ]);
+            ],
+            callback
+        );
     };
 
     this.update = function (key, values, callback) {
@@ -23,18 +25,21 @@ const ActivityEntryDAO = function () {
                 values.longitude,
                 values.altitude,
                 key
-            ]);
+            ],
+            callback
+        );
     };
 
     this.deleteAll = function (callback) {
-        db.run("DELETE FROM ActivityEntry");
+        db.run("DELETE FROM ActivityEntry", callback);
     }
 
     this.deleteFromActivity = function (key, callback) {
         db.run("DELETE FROM ActivityEntry WHERE activity = ?",
             [
                 key
-            ]
+            ],
+            callback
         );
     };
 
@@ -46,7 +51,9 @@ const ActivityEntryDAO = function () {
         db.run("SELECT * FROM ACtivityEntry WHERE activity = ?",
             [
                 key
-            ]);
+            ],
+            callback
+        );
     };
 };
 

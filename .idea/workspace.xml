@@ -19,12 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c70b978-7c5e-4c16-9562-a43eefaf5a2a" name="Default Changelist" comment="">
+    <list default="true" id="2c70b978-7c5e-4c16-9562-a43eefaf5a2a" name="Default Changelist" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_dao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_entry_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/activity_entry_dao.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/sport-track-db-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/sport-track-db-test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/express_webapp/sport-track-db/user_dao.js" beforeDir="false" afterPath="$PROJECT_DIR$/express_webapp/sport-track-db/user_dao.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,16 @@
       <updated>1601854181755</updated>
       <workItem from="1601854183380" duration="2840000" />
       <workItem from="1601879576758" duration="7581000" />
+      <workItem from="1601909667040" duration="5000" />
     </task>
+    <task id="LOCAL-00001" summary="test">
+      <created>1601890879182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1601890879182</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +107,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1327" y="391" width="215" height="333" key="#File_Watchers" timestamp="1601881122888">
@@ -126,9 +138,9 @@
       <screen x="0" y="29" width="1920" height="1051" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.29.1920.1051@0.29.1920.1051" timestamp="1601882020954" />
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601889850540">
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601891344348">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601889850540" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601891344348" />
   </component>
 </project>
