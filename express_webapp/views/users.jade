@@ -1,28 +1,89 @@
 doctype html
-html
+html(lang='fr')
     head
-        title= title
-        link(rel='stylesheet', href='/stylesheets/style.css')
-    body
-        table(border='1')
-            thead
-                tr
-                    th email
-                    th firstName
-                    th lastName
-                    th birthday
-                    th gender
-                    th height
-                    th weight
-                    th pwd
-            tbody
-                each val in data
-                    tr
-                        td= val.email
-                        td= val.firstName
-                        td= val.lastName
-                        td= val.birthday
-                        td= val.gender
-                        td= val.height
-                        td= val.weight
-                        td= val.pwd
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title Inscription
+        // CSS THEME
+        link(rel='stylesheet' href='/resources/css/vendor.bundle.base.css')
+        link(rel='stylesheet' href='/resources/css/style.css')
+    body#body
+        .container-scroller
+            .container-fluid.page-body-wrapper.full-page-wrapper
+                .content-wrapper.d-flex.align-items-center.theme-one
+                    .row.w-100.mx-auto
+                        .col-lg-8.col-xl-4.mx-auto
+                            .auto-form-wrapper
+                                .row.mt-5
+                                    .col-12
+                                        img.mt-5.mb-5.col-4.offset-4.col-md-2.offset-md-5.col-xl-4.offset-xl-4.img-fluid(src='/resources/img/sport_track.png')
+                                        form(action='' method='POST')
+                                            .row
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Nom :
+                                                        input.form-control.form-control-lg(type='text' name='lastName' minlength='1' maxlength='30' value='')
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Prénom :
+                                                        input.form-control.form-control-lg(type='text' name='firstName' minlength='1' maxlength='30' value='')
+                                            .row
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Date de naissance :
+                                                        input.form-control.form-control-lg(type='date' name='birthday' value='')
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Genre :
+                                                        input.form-control.form-control-lg(type='text' name='gender' minlength='1' maxlength='50' value='')
+                                            .row
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Taille (cm) :
+                                                        input.form-control.form-control-lg(type='number' name='height' min='1' value='')
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Masse (kg) :
+                                                        input.form-control.form-control-lg(type='number' name='weight' min='1' value='')
+                                            .row
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Email :
+                                                        input.form-control.form-control-lg(type='email' name='email' minlength='1' maxlength='50' value='')
+                                                .col-10.offset-1.col-md-6.offset-md-0
+                                                    .form-group
+                                                        label Mot de passe :
+                                                        input.form-control.form-control-lg(type='password' name='pwd' minlength='6' value='')
+                                            input(type='hidden' name='page' value='user_add')
+                                            .row.mt-3
+                                                .col-md-6.offset-md-0.mb-2.d-none.d-md-block
+                                                    a.btn.btn-block.btn-primary.return(style='cursor: pointer; color: white;' onclick="document.getElementById('submit-return').submit();") Retour
+                                                .col-10.offset-1.col-md-6.offset-md-0.mb-2
+                                                    button.btn.btn-block.btn-primary(type='submit') S'inscrire
+                                                .mt-3.col-10.offset-1.mb-2.d-block.d-md-none
+                                                    a.btn.btn-block.btn-primary.return(style='cursor: pointer; color: white;' onclick="document.getElementById('submit-return').submit();") Retour
+                                        form#submit-return(action='' method='post')
+                                            input(type='hidden' name='page' value='/')
+
+                table(border='1')
+                    thead
+                        tr
+                            th email
+                            th firstName
+                            th lastName
+                            th birthday
+                            th gender
+                            th height
+                            th weight
+                            th pwd
+                    tbody
+                        each val in data
+                            tr
+                                td= val.email
+                                td= val.firstName
+                                td= val.lastName
+                                td= val.birthday
+                                td= val.gender
+                                td= val.height
+                                td= val.weight
+                                td= val.pwd
