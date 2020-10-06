@@ -24,7 +24,7 @@ router.post('/', function (req, res, next) {
 
                 sess.error = err;
                 sess.return = '/connect';
-                req.redirect('/error');
+                res.redirect('/error');
 
             } else if (rows !== undefined) {
 
@@ -36,7 +36,7 @@ router.post('/', function (req, res, next) {
 
                     sess.error = 'Adresse mail ou mot de passe incorrect';
                     sess.return = '/connect';
-                    req.redirect('/error');
+                    res.redirect('/error');
 
                 }
 
@@ -44,7 +44,7 @@ router.post('/', function (req, res, next) {
 
                 sess.error = 'Adresse mail ou mot de passe incorrect';
                 sess.return = '/connect';
-                req.redirect('/error');
+                res.redirect('/error');
 
             }
 

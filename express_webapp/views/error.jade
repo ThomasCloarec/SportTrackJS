@@ -24,12 +24,12 @@ html(lang='fr')
                 .row.mt-5
                   .col-12.d-flex.text-center.justify-content-center
                     span(style='color: red;')
-                      //<%= session.error %>
+                      #{msg}
                       // ?php echo (empty($error)) ? '404 : Destination inconnue.' : $error ?
                 .row
                   .col-12.mt-5.d-flex.justify-content-center
                     form(action='' method='POST')
-                      input(type='hidden' name='page' value="")
+                      input(type='hidden' name='page' value="#{ret}")
                       .col-12.mt-2.mb-2
                         button.btn.btn-primary(type='submit') Retour
     //

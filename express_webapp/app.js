@@ -22,12 +22,6 @@ app.use(session({
   saveUninitialized: true
 }));
 
-/*app.dynamicHelpers({
-  session: function (req, res) {
-    return req.session;
-  }
-});*/
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
