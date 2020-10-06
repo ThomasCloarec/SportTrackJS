@@ -54,7 +54,7 @@ router.post('/', function (req, res, next) {
                 obj.data.forEach((value) => {
                     value.activity = idActivity
                 })
-                console.log(obj)
+
                 activity_entry_dao.insertAll(obj.data, (error, value) => {
                     activity_dao.findAll(function (activity_err, activity_rows) {
                         if (activity_err !== null) {
