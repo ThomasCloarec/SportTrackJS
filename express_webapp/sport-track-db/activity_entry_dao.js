@@ -5,8 +5,8 @@ const ActivityEntryDAO = function () {
         db.run("INSERT OR IGNORE INTO ActivityEntry(activity, timeD, cardioFrequency, latitude, longitude, altitude) values (?, ?, ?, ?, ?, ?)",
             [
                 values.activity,
-                values.timeD,
-                values.cardioFrequency,
+                values.time,
+                values.cardio_frequency,
                 values.latitude,
                 values.longitude,
                 values.altitude
@@ -21,12 +21,35 @@ const ActivityEntryDAO = function () {
         );
     };
 
+    this.insertAll = function (rows_values, callback) {
+        let sql = "INSERT OR IGNORE INTO ActivityEntry(activity, timeD, cardioFrequency, latitude, longitude, altitude) values";
+        let values = []
+
+        rows_values.forEach((value, index) => {
+            sql = sql + " (?, ?, ?, ?, ?, ?)";
+            if (index !== rows_values.length - 1) {
+                sql = sql + ","
+            }
+            values = values.concat([value.activity, value.time, value.cardio_frequency, value.latitude, value.longitude, value.altitude])
+        })
+
+        db.run(sql, values,
+            function (err) {
+                if (null == err) {
+                    callback(err, "Done");
+                } else {
+                    console.log(err);
+                }
+            }
+        );
+    };
+
     this.update = function (key, values, callback) {
         db.run("update ActivityEntry set activity = ?, timeD = ?, cardioFrequency = :?, latitude = ?, longitude = ?, altitude = ? where idActivtyEntry = ?",
             [
                 values.activity,
-                values.timeD,
-                values.cardioFrequency,
+                values.time,
+                values.cardio_frequency,
                 values.latitude,
                 values.longitude,
                 values.altitude,

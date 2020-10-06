@@ -46,3 +46,8 @@ activity.data = [
 ]
 
 console.log(calculatePathDistance(activity))
+
+
+module.exports = {
+    calculatePathDistance: calculatePathDistance
+}

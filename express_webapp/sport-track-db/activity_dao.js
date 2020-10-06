@@ -5,7 +5,7 @@ const ActivityDAO = function () {
         db.run("INSERT OR IGNORE INTO Activity (sportsman, day, description, totalDistance) VALUES (?, ?, ?, ?)",
             [
                 values.sportsman,
-                values.day,
+                values.date,
                 values.description,
                 values.totalDistance
             ],
@@ -17,15 +17,13 @@ const ActivityDAO = function () {
                 }
             }
         );
-
-        console.log(this.lastID)
     };
 
     this.update = function (key, values, callback) {
         db.run("UPDATE Activity SET sportsman = ?, day = ?, description = ?, totalDistance = ? where idActivity = ?",
             [
                 values.sportsman,
-                values.day,
+                values.date,
                 values.description,
                 values.totalDistance,
                 key

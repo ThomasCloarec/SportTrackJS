@@ -4,6 +4,8 @@ var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var busboy = require('connect-busboy'); //middleware for form/file upload
+var fs = require('fs-extra');       //File System - for file manipulation
 
 // routes requirements
 var indexRouter = require('./routes/index');
@@ -14,6 +16,8 @@ var errorRouter = require('./routes/error');
 
 // app instanciation
 var app = express();
+
+app.use(busboy())
 
 // session
 app.use(session({
