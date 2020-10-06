@@ -101,7 +101,7 @@ html(lang='fr')
                                                     button.col-8.offset-2.btn.btn-primary.btn-block Détails
                                                 form.col-12.mt-2(action='' method='POST')
                                                     input(type='hidden' name='page' value='delete_activity')
-                                                    input(type='hidden' name='activity-id' value='<?php echo $key->getIdActivity(); ?>')
+                                                    input(type='hidden' name='activity-id' value=val.idActivity)
                                                     button.col-8.offset-2.btn.btn-danger.btn-block Supprimer
                             .col-10.offset-1.mt-5.text-center.d-block.d-xl-none
                                 | Vous ne pouvez pas consulter vos activités sur smartphone et tablette !

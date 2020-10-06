@@ -1,4 +1,3 @@
-
 const express = require('express');
 const router = express.Router();
 const activity_dao = require("../sport-track-db/sport-track-db.js").activity_dao;
@@ -34,56 +33,60 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    var fstream;
-    req.pipe(req.busboy);
-    req.busboy.on('file', function (fieldname, file, filename) {
-        console.log("Uploading: " + filename);
-
-        //Path where image will be uploaded
-        fstream = fs.createWriteStream(__dirname + '/img/' + filename);
-        file.pipe(fstream);
-        fstream.on('close', function () {
-            console.log("Upload Finished of " + filename);
-
-            var obj = JSON.parse(fs.readFileSync(__dirname + '/img/' + filename, 'utf8'));
-
-            obj.activity.sportsman = "a@a.com"
-
-            obj.activity.totalDistance = calculatePathDistance(obj)
-            activity_dao.insert(obj.activity, (error, idActivity) => {
-                obj.data.forEach((value) => {
-                    value.activity = idActivity
-                })
-
-                activity_entry_dao.insertAll(obj.data, (error, value) => {
-                    activity_dao.findAll(function (activity_err, activity_rows) {
-                        if (activity_err !== null) {
-                            console.log("ERROR= " + activity_err);
-                        } else {
-                            activity_entry_dao.findAll(function (activity_entry_err, activity_entry_rows) {
-                                if (activity_entry_err !== null) {
-                                    console.log("ERROR= " + activity_entry_err);
-                                } else {
-                                    activity_rows.forEach((activity) => {
-                                        activity.entries = []
-                                        activity_entry_rows.forEach((activity_entry) => {
-                                            if (activity_entry.activity === activity.idActivity) {
-                                                activity.entries.push(activity_entry)
-                                            }
-                                        })
-                                    })
-                                    res.render('activities', {data: activity_rows});
-                                }
-                            })
-                        }
-                    });
-                })
-            })
-        });
-    });
-
-    if (req.body.page === '/') {
+    if (req.body.page === "delete_activity") {
+        activity_entry_dao.deleteFromActivity(req.body['activity-id'], null)
+        activity_dao.delete(req.body['activity-id'], null);
+        res.redirect('/activities')
+    } else if (req.body.page === '/') {
         res.redirect('/');
+    } else {
+        var fstream;
+        req.pipe(req.busboy);
+        req.busboy.on('file', function (fieldname, file, filename) {
+            console.log("Uploading: " + filename);
+
+            //Path where image will be uploaded
+            fstream = fs.createWriteStream(__dirname + '/img/' + filename);
+            file.pipe(fstream);
+            fstream.on('close', function () {
+                console.log("Upload Finished of " + filename);
+
+                var obj = JSON.parse(fs.readFileSync(__dirname + '/img/' + filename, 'utf8'));
+
+                obj.activity.sportsman = "a@a.com"
+
+                obj.activity.totalDistance = calculatePathDistance(obj)
+                activity_dao.insert(obj.activity, (error, idActivity) => {
+                    obj.data.forEach((value) => {
+                        value.activity = idActivity
+                    })
+
+                    activity_entry_dao.insertAll(obj.data, (error, value) => {
+                        activity_dao.findAll(function (activity_err, activity_rows) {
+                            if (activity_err !== null) {
+                                console.log("ERROR= " + activity_err);
+                            } else {
+                                activity_entry_dao.findAll(function (activity_entry_err, activity_entry_rows) {
+                                    if (activity_entry_err !== null) {
+                                        console.log("ERROR= " + activity_entry_err);
+                                    } else {
+                                        activity_rows.forEach((activity) => {
+                                            activity.entries = []
+                                            activity_entry_rows.forEach((activity_entry) => {
+                                                if (activity_entry.activity === activity.idActivity) {
+                                                    activity.entries.push(activity_entry)
+                                                }
+                                            })
+                                        })
+                                        res.render('activities', {data: activity_rows});
+                                    }
+                                })
+                            }
+                        });
+                    })
+                })
+            });
+        });
     }
 });
 
