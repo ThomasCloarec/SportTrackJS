@@ -11,11 +11,9 @@ html(lang='fr')
             .col-separator {
                 border-left: 1px solid rgba(0, 0, 0, 0.2);
             }
-
             .striped div:nth-child(even) {
                 background-color: #ddd !important;
             }
-
             .striped div:nth-child(even) .col-separator {
                 border-left: 1px solid rgba(0, 0, 0, 0.2);
             }
@@ -45,7 +43,7 @@ html(lang='fr')
                                         label Fichier d'activité :
                                         input#activity-file.file-upload-default(onchange="document.getElementById('activity-file-name').value = this.value.replace('C:\\fakepath\\', '')" type='file' name='activity-file')
                                         .col-12.input-group(style='padding: 0px;')
-                                            input#activity-file-name.form-control(type='file' disabled='' name='fileUploaded')
+                                            input#activity-file-name.form-control(type='text' disabled='' name='activity-file-name')
                                             span.input-group-append
                                                 button.file-upload-browse.btn.btn-primary(onclick="document.getElementById('activity-file').click()" type='button') Upload
                                     input(type='hidden' name='page' value='upload_activity')
