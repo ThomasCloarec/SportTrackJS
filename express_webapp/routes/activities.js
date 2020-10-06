@@ -83,6 +83,10 @@ router.post('/', function (req, res, next) {
             })
         });
     });
+
+    if (req.body.page === '/') {
+        res.redirect('/');
+    }
 });
 
 module.exports = router;

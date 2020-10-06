@@ -34,7 +34,7 @@ router.post('/', function (req, res, next) {
                     if (admins.includes(rows.email)) {
                         sess.admin = rows.email
                     }
-                    res.render('connectValidation', {connected_user : sess.connected_user, admin : sess.admin});
+                    res.render('connectValidation', {connected_user : sess.connected_user});
 
                 } else {
                     sess.error = 'Adresse mail ou mot de passe incorrect';
