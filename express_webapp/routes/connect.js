@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const user_dao = require("../sport-track-db/sport-track-db.js").user_dao;
 
+const admins = ["admin@sporttrack.fr"]
+
 router.get('/', function (req, res, next) {
     user_dao.findAll(function (err, rows) {
         if (err !== null) {
@@ -16,24 +18,25 @@ router.post('/', function (req, res, next) {
 
     sess = req.session;
 
-    if (req.body.page === 'user_connect' && req.body.email !== '') {
-
+    if (req.body.page === 'user_connect' && req.body.email) {
+        console.log(req.body.email)
         user_dao.findByKey(req.body.email, function (err, rows) {
-
-            if (err !== null) {
-
+            console.log(rows)
+            if (err) {
                 sess.error = err;
                 sess.return = '/connect';
                 res.redirect('/error');
 
-            } else if (rows !== undefined) {
+            } else if (rows) {
 
                 if (rows.pwd === req.body.pwd) {
-
-                    res.render('connectValidation');
+                    sess.connected_user = req.body.email
+                    if (admins.includes(rows.email)) {
+                        sess.admin = rows.email
+                    }
+                    res.render('connectValidation', {connected_user : sess.connected_user, admin : sess.admin});
 
                 } else {
-
                     sess.error = 'Adresse mail ou mot de passe incorrect';
                     sess.return = '/connect';
                     res.redirect('/error');
@@ -41,7 +44,6 @@ router.post('/', function (req, res, next) {
                 }
 
             } else {
-
                 sess.error = 'Adresse mail ou mot de passe incorrect';
                 sess.return = '/connect';
                 res.redirect('/error');
@@ -55,7 +57,6 @@ router.post('/', function (req, res, next) {
     if (req.body.page === '/') {
         res.redirect('/');
     }
-
 });
 
 module.exports = router;

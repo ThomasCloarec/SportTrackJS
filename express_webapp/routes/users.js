@@ -25,6 +25,10 @@ router.post('/', function (req, res, next) {
             res.render('users', {data: rows});
         }
     });
+
+    if (req.body.page === '/') {
+        res.redirect('/');
+    }
 });
 
 module.exports = router;
