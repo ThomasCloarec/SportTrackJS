@@ -17,41 +17,37 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
 
     sess = req.session;
+    if (req.body.page === 'user_connect') {
+        if (req.body.email) {
+            user_dao.findByKey(req.body.email, function (err, rows) {
+                if (err) {
+                    sess.error = err;
 
-    if (req.body.page === 'user_connect' && req.body.email) {
-        console.log(req.body.email)
-        user_dao.findByKey(req.body.email, function (err, rows) {
-            console.log(rows)
-            if (err) {
-                sess.error = err;
-                sess.return = '/connect';
-                res.redirect('/error');
+                } else if (rows) {
+                    if (rows.pwd === req.body.pwd) {
+                        sess.connected_user = req.body.email
+                        if (admins.includes(rows.email)) {
+                            sess.admin = rows.email
+                        }
+                        res.render('connectValidation', {connected_user: sess.connected_user});
 
-            } else if (rows) {
-
-                if (rows.pwd === req.body.pwd) {
-                    sess.connected_user = req.body.email
-                    if (admins.includes(rows.email)) {
-                        sess.admin = rows.email
+                    } else {
+                        sess.error = 'Mot de passe incorrect';
                     }
-                    res.render('connectValidation', {connected_user : sess.connected_user});
-
                 } else {
-                    sess.error = 'Adresse mail ou mot de passe incorrect';
-                    sess.return = '/connect';
-                    res.redirect('/error');
-
+                    sess.error = 'Veuillez renseigner un email existant';
                 }
 
-            } else {
-                sess.error = 'Adresse mail ou mot de passe incorrect';
-                sess.return = '/connect';
-                res.redirect('/error');
-
-            }
-
-        })
-
+                if (sess.error) {
+                    sess.return = '/connect';
+                    res.redirect('/error');
+                }
+            })
+        } else {
+            sess.error = 'Veuillez renseigner un email';
+            sess.return = '/connect';
+            res.redirect('/error');
+        }
     }
 
     if (req.body.page === '/') {

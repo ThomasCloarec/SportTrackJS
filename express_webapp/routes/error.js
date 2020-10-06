@@ -10,6 +10,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
+    req.session.error = null
+    req.session.return = null
     res.redirect(req.body.page);
 });
 

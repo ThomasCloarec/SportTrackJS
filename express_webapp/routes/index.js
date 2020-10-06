@@ -10,7 +10,13 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    res.redirect(req.body.page)
+    if (req.body.page ==="user_disconnect") {
+        req.session.connected_user = null
+        req.session.admin = null
+        res.redirect("/")
+    } else {
+        res.redirect(req.body.page)
+    }
 });
 
 

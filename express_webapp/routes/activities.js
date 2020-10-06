@@ -72,8 +72,6 @@ router.post('/', function (req, res, next) {
                                             }
                                         })
                                     })
-                                    console.log(activity_rows)
-                                    console.log(activity_entry_rows)
                                     res.render('activities', {data: activity_rows});
                                 }
                             })
