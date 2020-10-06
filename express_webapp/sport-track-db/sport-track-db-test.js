@@ -18,8 +18,9 @@ class Sportsman {
 
 class Activity {
     constructor(sportsman, day, description, totalDistance) {
+        this.idActivity = null
         this.sportsman = sportsman;
-        this.day = day;
+        this.date = day;
         this.description = description;
         this.totalDistance = totalDistance;
     }
@@ -27,9 +28,10 @@ class Activity {
 
 class ActivityEntry {
     constructor(activity, timeD, cardioFrequency, latitude, longitude, altitude) {
+        this.idActivityEntry = null
         this.activity =  activity;
-        this.timeD = timeD;
-        this.cardioFrequency = cardioFrequency;
+        this.time = timeD;
+        this.cardio_frequency = cardioFrequency;
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
@@ -38,22 +40,36 @@ class ActivityEntry {
 
 // Test Sportsman
 
-user_dao.insert(new Sportsman("testglai.com", "John", "Doe", null, "Homme", 180, 80, "Test"), (error, value) => console.log(value));
-
-activity = new Sportsman("a@a.com", "Hehe", "Doe", null, "Homme", 180, 80, "Test")
-user_dao.insert(activity, (error, value) => console.log(value));
-
-activity.firstName = "Dang";
-activity.lastName = "Ding";
-user_dao.update(activity.email, activity, (error, value) => console.log(value))
-user_dao.findAll((error, rows) => console.log(rows))
+// user_dao.insert(new Sportsman("testglai.com", "John", "Doe", null, "Homme", 180, 80, "Test"), (error, value) => console.log(value));
+//
+// const sportsman = new Sportsman("a@a.com", "Hehe", "Doe", null, "Homme", 180, 80, "Test")
+// user_dao.insert(sportsman, (error, value) => console.log(value));
+//
+// sportsman.firstName = "Dang";
+// sportsman.lastName = "Ding";
+// user_dao.update(sportsman.email, sportsman, (error, value) => console.log(value))
+// // user_dao.findAll((error, rows) => console.log(rows))
 
 
 // Test Activity
+// activity_dao.deleteAll(() => {})
+// activity_entry_dao.deleteAll(() => {})
+//
+const activity = new Activity("a@a.com", "19/07/2020", "IUT->RU", 250);
+activity_dao.insert(activity, (error, value) => {
+    activity_entry_dao.insertAll([new ActivityEntry(value, '13:00:15', 100, 47, -2, 17),
+        new ActivityEntry(value, '13:00:38', 90, 46, -1, 17)], (error, value) => console.log(value))
+});
 
-activity_dao.deleteAll()
-activity = new Activity("a@a.com", "19/07/2020", "IUT->RU", 250);
-activity_dao.insert(activity, null);
+
+
+activity_dao.findAll((error, rows) => {console.log(rows)})
+
+
+activity_entry_dao.findAll((error, rows) => {console.log(rows)})
+
+
+
 
 
 

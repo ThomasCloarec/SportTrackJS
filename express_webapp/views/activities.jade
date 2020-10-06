@@ -1,0 +1,110 @@
+doctype html
+html(lang='fr')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title Activités
+        // CSS THEME
+        link(rel='stylesheet' href='resources/css/vendor.bundle.base.css')
+        link(rel='stylesheet' href='resources/css/style.css')
+        style.
+            .col-separator {
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+            }
+            .striped div:nth-child(even) {
+                background-color: #ddd !important;
+            }
+            .striped div:nth-child(even) .col-separator {
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+            }
+    body#body
+        .container-scroller
+            // PAGE CONTENT
+            nav.navbar.navbar-expand-lg.navbar-light.fixed-top(style='background: white; border-bottom: 1px solid #ff7b00')
+                .navbar-collapse.collapse
+                    form.navbar-nav.mr-auto(action='' method='post')
+                        input(type='hidden' name='page' value='/')
+                        button.navbar-brand(type='submit' style='background: transparent; border: 0px solid transparent;')
+                            img.img-fluid(style='max-height: 50px;' src='resources/img/sport_track.png')
+                            span(style='color: #ff7b00;')
+                                b SportTrack
+            .container-fluid.page-body-wrapper
+                .main-panel
+                    // CONTENT WRAPPER
+                    .home-wrapper
+                        .row.mt-5 t
+                        .row.mt-5
+                            .col-12.text-center
+                                h2 Ajouter une activité
+                        .row.mt-5
+                            .col-8.offset-2.col-md-6.offset-md-3.col-lg-4.offset-lg-4.col-xl-2.offset-xl-5
+                                form(action='' method='POST' enctype='multipart/form-data')
+                                    .form-group
+                                        label Fichier d'activité :
+                                        input#activity-file.file-upload-default(onchange="document.getElementById('activity-file-name').value = this.value.replace('C:\\fakepath\\', '')" type='file' name='activity-file')
+                                        .col-12.input-group(style='padding: 0px;')
+                                            input#activity-file-name.form-control(type='text' disabled='' name='activity-file-name')
+                                            span.input-group-append
+                                                button.file-upload-browse.btn.btn-primary(onclick="document.getElementById('activity-file').click()" type='button') Upload
+                                    input(type='hidden' name='page' value='upload_activity')
+                                    .row.mt-3
+                                        .col-12
+                                            button.btn.btn-block.btn-primary(type='submit') Envoyer
+                        .row
+                            .col-10.offset-1
+                                hr.mt-5(style='border-top: 1px solid rgba(0, 0, 0, 0.2);')
+                        .row.mt-5
+                            .col-12.text-center
+                                h2 Mes activités
+                        .row.mt-5.mb-5
+                            .col-xl-10.offset-xl-1.d-none.d-xl-block.striped
+                                .row.pt-3.pb-3.justify-content-center
+                                    span.col-xl-2.text-center
+                                        b Description
+                                    span.col-xl-2.text-center.col-separator
+                                        b Date
+                                    span.col-xl-2.text-center.col-separator
+                                        b Durée
+                                    span.col-xl-2.text-center.col-separator
+                                        b Distance parcourue
+                                    span.col-xl-2.text-center.col-separator
+                                        b Fréquences cardiaques
+                                    span.col-xl-2.text-center.col-separator
+                                        b Actions
+                                each val in data
+                                    .row.pt-3.pb-3.justify-content-center
+                                        span.col-xl-2.d-flex.align-items-center
+                                            span.text-center.w-100
+                                                | #{val.description}
+                                        span.col-xl-2.d-flex.align-items-center.col-separator
+                                            span.text-center.w-100
+                                                | #{val.day}
+                                        span.col-xl-2.col-separator
+                                            | Commencée à #{val.beginning}
+                                            br
+                                            | Terminée à #{val.ending}
+                                            br
+                                            | Durée totale : #{(String(val.ending).split(':')[0]) * 60 * 60 + (String(val.ending).split(':')[1]) * 60 + (String(val.ending).split(':')[2]) - ((String(val.beginning).split(':')[0]) * 60 * 60 + (String(val.beginning).split(':')[1]) * 60 + (String(val.beginning).split(':')[2]))} secondes
+                                        span.col-xl-2.col-separator
+                                            | #{Math.round(val.totalDistance * 100) / 100} kilomètres
+                                        span.col-xl-2.col-separator
+                                            | Max : #{val.maxFrequency}
+                                            br
+                                            | Min : #{val.minFrequency}
+                                            br
+                                            | Moyenne : #{Math.round(val.avgFrequency * 100) / 100}
+                                        span.col-xl-2.d-flex.align-items-center.col-separator
+                                            span.w-100
+                                                form.col-12(action='' method='POST')
+                                                    input(type='hidden' name='page' value='activity_details')
+                                                    input(type='hidden' name='activity-id' value='<?php echo $key->getIdActivity(); ?>')
+                                                    button.col-8.offset-2.btn.btn-primary.btn-block Détails
+                                                form.col-12.mt-2(action='' method='POST')
+                                                    input(type='hidden' name='page' value='delete_activity')
+                                                    input(type='hidden' name='activity-id' value='<?php echo $key->getIdActivity(); ?>')
+                                                    button.col-8.offset-2.btn.btn-danger.btn-block Supprimer
+                            .col-10.offset-1.mt-5.text-center.d-block.d-xl-none
+                                | Vous ne pouvez pas consulter vos activités sur smartphone et tablette !
+
+                            .col-10.offset-1.mt-5.text-center.d-none.d-xl-block
+                                | Ajoutez des activités pour les voir apparaître ici !

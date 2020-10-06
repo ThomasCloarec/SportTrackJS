@@ -4,15 +4,20 @@ var session = require('express-session');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var busboy = require('connect-busboy'); //middleware for form/file upload
+var fs = require('fs-extra');       //File System - for file manipulation
 
 // routes requirements
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var connectRouter = require('./routes/connect');
+var activitiesRouter = require('./routes/activities');
 var errorRouter = require('./routes/error');
 
 // app instanciation
 var app = express();
+
+app.use(busboy())
 
 // session
 app.use(session({
@@ -36,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/connect', connectRouter);
+app.use('/activities', activitiesRouter);
 app.use('/error', errorRouter);
 
 // catch 404 and forward to error handler
