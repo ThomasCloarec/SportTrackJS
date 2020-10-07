@@ -1,4 +1,5 @@
 const db = require('./sqlite_connection');
+const bcrypt = require('bcrypt');
 
 const UserDAO = function () {
     this.update = function (key, values, callback) {
@@ -11,7 +12,7 @@ const UserDAO = function () {
                 values.gender,
                 values.height,
                 values.weight,
-                values.pwd,
+                bcrypt.hashSync(values.pwd, 10),
                 key
             ],
             callback
