@@ -2,11 +2,16 @@ const db = require('./sqlite_connection');
 
 const UserDAO = function () {
     this.update = function (key, values, callback) {
-        db.run("UPDATE Sportsman SET email = ?, firstName = ?, lastName = ? WHERE email = ?",
+        db.run("UPDATE Sportsman SET email = ?, firstName = ?, lastName = ?, birthday = ?, gender = ?, height = ?, weight = ?, pwd = ? WHERE email = ?",
             [
                 values.email,
                 values.firstName,
                 values.lastName,
+                values.birthday,
+                values.gender,
+                values.height,
+                values.weight,
+                values.pwd,
                 key
             ],
             callback
