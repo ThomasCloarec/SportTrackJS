@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const user_dao = require("../sport-track-db/sport-track-db.js").user_dao;
+const bcrypt = require('bcrypt');
 
 const admins = ["admin@sporttrack.fr"]
 
@@ -32,10 +33,10 @@ router.post('/', function (req, res, next) {
                         res.render('connectValidation', {connected_user: sess.connected_user});
 
                     } else {
-                        sess.error = 'Mot de passe incorrect';
+                        sess.error = 'Email ou mot de passe incorrect';
                     }
                 } else {
-                    sess.error = 'Veuillez renseigner un email existant';
+                    sess.error = 'Email ou mot de passe incorrect';
                 }
 
                 if (sess.error) {
@@ -48,9 +49,7 @@ router.post('/', function (req, res, next) {
             sess.return = '/connect';
             res.redirect('/error');
         }
-    }
-
-    if (req.body.page === '/') {
+    } else if (req.body.page === '/') {
         res.redirect('/');
     }
 });
