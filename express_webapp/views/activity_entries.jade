@@ -1,0 +1,75 @@
+doctype html
+html(lang='fr')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title Entrées de l'activité #{activity.idActivity}
+        // CSS THEME
+        link(rel='stylesheet' href='resources/css/vendor.bundle.base.css')
+        link(rel='stylesheet' href='resources/css/style.css')
+        link(rel='stylesheet' href='resources/iconfonts/font-awesome/css/font-awesome.min.css')
+        style.
+            .col-separator {
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+            }
+
+            .striped div:nth-child(even) {
+                background-color: #ddd !important;
+            }
+
+            .striped div:nth-child(even) .col-separator {
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+            }
+    body#body
+        .container-scroller
+            // PAGE CONTENT
+            nav.navbar.navbar-expand-lg.navbar-light.fixed-top(style='background: white; border-bottom: 1px solid #ff7b00')
+                form(action='' method='post')
+                    input(type='hidden' name='page' value='list_activities')
+                    button.navbar-brand(type='submit' style='background: transparent; border: 0px solid transparent; color: #ff7b00;')
+                        span.fa.fa-arrow-left
+                        b  Retour
+            .container-fluid.page-body-wrapper
+                .main-panel
+                    .home-wrapper
+                        .row.mt-5
+                        .row.mt-5
+                            .col-12.text-center
+                                h2
+                                    | Entrées de l'activité #{activity.idActivity}
+                        .row.mt-5.mb-5
+
+                            .col-xl-10.offset-xl-1.d-none.d-xl-block.striped
+                                .row.pt-3.pb-3.justify-content-center
+                                    span.col-xl-2.text-center
+                                        b #
+                                    span.col-xl-2.text-center.col-separator
+                                        b Durée
+                                    span.col-xl-2.text-center.col-separator
+                                        b Fréquence cardiaque
+                                    span.col-xl-2.text-center.col-separator
+                                        b Latitude
+                                    span.col-xl-2.text-center.col-separator
+                                        b Longitude
+                                    span.col-xl-2.text-center.col-separator
+                                        b Altitude
+                                each activity_entry in activity.entries
+                                    .row.pt-3.pb-3.justify-content-center
+                                        span.col-xl-2.d-flex.align-items-center
+                                            span.text-center.w-100
+                                                | #{activity_entry.idActivityEntry}
+                                        span.col-xl-2.d-flex.align-items-center.col-separator
+                                            span.text-center.w-100
+                                                | #{activity_entry.timeD}
+                                        span.col-xl-2.d-flex.align-items-center.col-separator
+                                            span.text-center.w-100
+                                                | #{activity_entry.cardioFrequency}
+                                        span.col-xl-2.d-flex.align-items-center.col-separator
+                                            span.text-center.w-100
+                                                | #{activity_entry.latitude}
+                                        span.col-xl-2.d-flex.align-items-center.col-separator
+                                            span.text-center.w-100
+                                                | #{activity_entry.longitude}
+                                        span.col-xl-2.d-flex.align-items-center.col-separator
+                                            span.text-center.w-100
+                                                | #{activity_entry.altitude}

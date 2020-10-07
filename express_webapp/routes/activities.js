@@ -9,33 +9,31 @@ var path = require('path');     //used for file path
 var fs = require('fs-extra');       //File System - for file manipulation
 
 router.get('/', function (req, res, next) {
-    activity_dao.findAll(function (activity_err, activity_rows) {
-        if (activity_err !== null) {
-            console.log("ERROR= " + activity_err);
-        } else {
-            activity_entry_dao.findAll(function (activity_entry_err, activity_entry_rows) {
-                if (activity_entry_err !== null) {
-                    console.log("ERROR= " + activity_entry_err);
-                } else {
-                    activity_rows.forEach((activity) => {
-                        activity.entries = []
-                        activity_entry_rows.forEach((activity_entry) => {
-                            if (activity_entry.activity === activity.idActivity) {
-                                activity.entries.push(activity_entry)
-                            }
-                        })
-                    })
-                    res.render('activities', {data: activity_rows});
-                }
-            })
-        }
-    });
+    if (req.session.connected_user) {
+        activity_dao.findAllFromSportsman(req.session.connected_user, function (activity_err, activity_rows) {
+            if (activity_err !== null) {
+                console.log("ERROR= " + activity_err);
+            } else {
+                res.render('activities', {data: activity_rows});
+            }
+        });
+    } else {
+        req.session.error = 'Accès interdit, veuillez vous connecter.';
+        req.session.return = '/';
+        res.redirect('/error');
+    }
 });
 
 router.post('/', function (req, res, next) {
     if (req.body.page === "delete_activity") {
         activity_entry_dao.deleteFromActivity(req.body['activity-id'], null)
         activity_dao.delete(req.body['activity-id'], null);
+        res.redirect('/activities')
+    } else if (req.body.page === "activity_details") {
+        activity_dao.findByKeyWithEntries(req.body["activity-id"], (error, value) => {
+            res.render("activity_entries", {activity: value})
+        })
+    } else if (req.body.page === "list_activities") {
         res.redirect('/activities')
     } else if (req.body.page === '/') {
         res.redirect('/');
@@ -53,7 +51,7 @@ router.post('/', function (req, res, next) {
 
                 var obj = JSON.parse(fs.readFileSync(__dirname + '/img/' + filename, 'utf8'));
 
-                obj.activity.sportsman = "a@a.com"
+                obj.activity.sportsman = req.session.connected_user
 
                 obj.activity.totalDistance = calculatePathDistance(obj)
                 activity_dao.insert(obj.activity, (error, idActivity) => {
@@ -62,25 +60,11 @@ router.post('/', function (req, res, next) {
                     })
 
                     activity_entry_dao.insertAll(obj.data, (error, value) => {
-                        activity_dao.findAll(function (activity_err, activity_rows) {
+                        activity_dao.findAllFromSportsman(req.session.connected_user, function (activity_err, activity_rows) {
                             if (activity_err !== null) {
                                 console.log("ERROR= " + activity_err);
                             } else {
-                                activity_entry_dao.findAll(function (activity_entry_err, activity_entry_rows) {
-                                    if (activity_entry_err !== null) {
-                                        console.log("ERROR= " + activity_entry_err);
-                                    } else {
-                                        activity_rows.forEach((activity) => {
-                                            activity.entries = []
-                                            activity_entry_rows.forEach((activity_entry) => {
-                                                if (activity_entry.activity === activity.idActivity) {
-                                                    activity.entries.push(activity_entry)
-                                                }
-                                            })
-                                        })
-                                        res.render('activities', {data: activity_rows});
-                                    }
-                                })
+                                res.render('activities', {data: activity_rows});
                             }
                         });
                     })

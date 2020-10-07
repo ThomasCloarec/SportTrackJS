@@ -11,9 +11,11 @@ html(lang='fr')
             .col-separator {
                 border-left: 1px solid rgba(0, 0, 0, 0.2);
             }
+
             .striped div:nth-child(even) {
                 background-color: #ddd !important;
             }
+
             .striped div:nth-child(even) .col-separator {
                 border-left: 1px solid rgba(0, 0, 0, 0.2);
             }
@@ -57,54 +59,53 @@ html(lang='fr')
                             .col-12.text-center
                                 h2 Mes activités
                         .row.mt-5.mb-5
-                            .col-xl-10.offset-xl-1.d-none.d-xl-block.striped
-                                .row.pt-3.pb-3.justify-content-center
-                                    span.col-xl-2.text-center
-                                        b Description
-                                    span.col-xl-2.text-center.col-separator
-                                        b Date
-                                    span.col-xl-2.text-center.col-separator
-                                        b Durée
-                                    span.col-xl-2.text-center.col-separator
-                                        b Distance parcourue
-                                    span.col-xl-2.text-center.col-separator
-                                        b Fréquences cardiaques
-                                    span.col-xl-2.text-center.col-separator
-                                        b Actions
-                                each val in data
+                            if data
+                                .col-xl-10.offset-xl-1.d-none.d-xl-block.striped
                                     .row.pt-3.pb-3.justify-content-center
-                                        span.col-xl-2.d-flex.align-items-center
-                                            span.text-center.w-100
-                                                | #{val.description}
-                                        span.col-xl-2.d-flex.align-items-center.col-separator
-                                            span.text-center.w-100
-                                                | #{val.day}
-                                        span.col-xl-2.col-separator
-                                            | Commencée à #{val.beginning}
-                                            br
-                                            | Terminée à #{val.ending}
-                                            br
-                                            | Durée totale : #{(String(val.ending).split(':')[0]) * 60 * 60 + (String(val.ending).split(':')[1]) * 60 + (String(val.ending).split(':')[2]) - ((String(val.beginning).split(':')[0]) * 60 * 60 + (String(val.beginning).split(':')[1]) * 60 + (String(val.beginning).split(':')[2]))} secondes
-                                        span.col-xl-2.col-separator
-                                            | #{Math.round(val.totalDistance * 100) / 100} kilomètres
-                                        span.col-xl-2.col-separator
-                                            | Max : #{val.maxFrequency}
-                                            br
-                                            | Min : #{val.minFrequency}
-                                            br
-                                            | Moyenne : #{Math.round(val.avgFrequency * 100) / 100}
-                                        span.col-xl-2.d-flex.align-items-center.col-separator
-                                            span.w-100
-                                                form.col-12(action='' method='POST')
-                                                    input(type='hidden' name='page' value='activity_details')
-                                                    input(type='hidden' name='activity-id' value='<?php echo $key->getIdActivity(); ?>')
-                                                    button.col-8.offset-2.btn.btn-primary.btn-block Détails
-                                                form.col-12.mt-2(action='' method='POST')
-                                                    input(type='hidden' name='page' value='delete_activity')
-                                                    input(type='hidden' name='activity-id' value=val.idActivity)
-                                                    button.col-8.offset-2.btn.btn-danger.btn-block Supprimer
-                            .col-10.offset-1.mt-5.text-center.d-block.d-xl-none
-                                | Vous ne pouvez pas consulter vos activités sur smartphone et tablette !
-
-                            .col-10.offset-1.mt-5.text-center.d-none.d-xl-block
-                                | Ajoutez des activités pour les voir apparaître ici !
+                                        span.col-xl-2.text-center
+                                            b Description
+                                        span.col-xl-2.text-center.col-separator
+                                            b Date
+                                        span.col-xl-2.text-center.col-separator
+                                            b Durée
+                                        span.col-xl-2.text-center.col-separator
+                                            b Distance parcourue
+                                        span.col-xl-2.text-center.col-separator
+                                            b Fréquences cardiaques
+                                        span.col-xl-2.text-center.col-separator
+                                            b Actions
+                                    each val in data
+                                        .row.pt-3.pb-3.justify-content-center
+                                            span.col-xl-2.d-flex.align-items-center
+                                                span.text-center.w-100
+                                                    | #{val.description}
+                                            span.col-xl-2.d-flex.align-items-center.col-separator
+                                                span.text-center.w-100
+                                                    | #{val.day}
+                                            span.col-xl-2.col-separator
+                                                | Commencée à #{val.beginning}
+                                                br
+                                                | Terminée à #{val.ending}
+                                                br
+                                                | Durée totale : #{(String(val.ending).split(':')[0]) * 60 * 60 + (String(val.ending).split(':')[1]) * 60 + (String(val.ending).split(':')[2]) - ((String(val.beginning).split(':')[0]) * 60 * 60 + (String(val.beginning).split(':')[1]) * 60 + (String(val.beginning).split(':')[2]))} secondes
+                                            span.col-xl-2.col-separator
+                                                | #{Math.round(val.totalDistance * 100) / 100} kilomètres
+                                            span.col-xl-2.col-separator
+                                                | Max : #{val.maxFrequency}
+                                                br
+                                                | Min : #{val.minFrequency}
+                                                br
+                                                | Moyenne : #{Math.round(val.avgFrequency * 100) / 100}
+                                            span.col-xl-2.d-flex.align-items-center.col-separator
+                                                span.w-100
+                                                    form.col-12(action='' method='POST')
+                                                        input(type='hidden' name='page' value='activity_details')
+                                                        input(type='hidden' name='activity-id' value=val.idActivity)
+                                                        button.col-8.offset-2.btn.btn-primary.btn-block Détails
+                                                    form.col-12.mt-2(action='' method='POST')
+                                                        input(type='hidden' name='page' value='delete_activity')
+                                                        input(type='hidden' name='activity-id' value=val.idActivity)
+                                                        button.col-8.offset-2.btn.btn-danger.btn-block Supprimer
+                            else
+                                .col-10.offset-1.mt-5.text-center.d-none.d-xl-block
+                                    | Ajoutez des activités pour les voir apparaître ici !

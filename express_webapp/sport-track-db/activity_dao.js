@@ -1,4 +1,5 @@
 const db = require('./sqlite_connection');
+const activity_entry_dao = require("./activity_entry_dao");
 
 const ActivityDAO = function () {
     this.insert = function (values, callback) {
@@ -58,6 +59,30 @@ const ActivityDAO = function () {
         db.all("SELECT * FROM Activity", callback);
     };
 
+    this.findAllWithEntries = function(callback) {
+        this.findAll(function (activity_err, activity_rows) {
+            if (activity_err !== null) {
+                console.log("ERROR= " + activity_err);
+            } else {
+                activity_entry_dao.findAll(function (activity_entry_err, activity_entry_rows) {
+                    if (activity_entry_err !== null) {
+                        console.log("ERROR= " + activity_entry_err);
+                    } else {
+                        activity_rows.forEach((activity) => {
+                            activity.entries = []
+                            activity_entry_rows.forEach((activity_entry) => {
+                                if (activity_entry.activity === activity.idActivity) {
+                                    activity.entries.push(activity_entry)
+                                }
+                            })
+                        })
+                        callback(activity_entry_err, activity_rows)
+                    }
+                })
+            }
+        });
+    }
+
     this.findAllFromSportsman = function (key, callback) {
         db.all("SELECT * FROM Activity WHERE sportsman = ?",
             [
@@ -77,13 +102,35 @@ const ActivityDAO = function () {
     };
 
     this.findByKey = function (key, callback) {
-        db.get("SELECT * FROM Activity WHERE idACtivity = ?",
+        db.get("SELECT * FROM Activity WHERE idActivity = ?",
             [
                 key
             ],
             callback
         );
     };
+
+    this.findByKeyWithEntries = function (key, callback) {
+        this.findByKey(key, function (activity_err, activity) {
+            if (activity_err !== null) {
+                console.log("ERROR= " + activity_err);
+            } else {
+                activity_entry_dao.findAll(function (activity_entry_err, activity_entry_rows) {
+                    if (activity_entry_err !== null) {
+                        console.log("ERROR= " + activity_entry_err);
+                    } else {
+                        activity.entries = []
+                        activity_entry_rows.forEach((activity_entry) => {
+                            if (activity_entry.activity === activity.idActivity) {
+                                activity.entries.push(activity_entry)
+                            }
+                        })
+                        callback(activity_entry_err, activity)
+                    }
+                })
+            }
+        });
+    }
 };
 
 let dao = new ActivityDAO();

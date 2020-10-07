@@ -3,7 +3,7 @@ html(lang='fr')
     head
         meta(charset='utf-8')
         meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
-        title Inscription
+        title Erreur
         // CSS THEME
         link(rel='stylesheet' href='resources/css/vendor.bundle.base.css')
         link(rel='stylesheet' href='resources/css/style.css')
@@ -17,10 +17,10 @@ html(lang='fr')
                                 .row.mt-5
                                     .col-12.d-flex.text-center.justify-content-center
                                         span(style='color: red;')
-                                            | #{err}
+                                            | #{err ? err : "Ceci est une page d'erreur, veuillez retourner à l'accueil."}
                                 .row
                                     .col-12.mt-5.d-flex.justify-content-center
                                         form(action='' method='POST')
-                                            input(type='hidden' name='page' value=ret)
+                                            input(type='hidden' name='page' value=ret ? ret : '/')
                                             .col-12.mt-2.mb-2
                                                 button.btn.btn-primary(type='submit') Retour

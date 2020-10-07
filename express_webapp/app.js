@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var connectRouter = require('./routes/connect');
 var activitiesRouter = require('./routes/activities');
+var modifyRouter = require('./routes/modify');
 var errorRouter = require('./routes/error');
 
 // app instanciation
@@ -42,6 +43,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/connect', connectRouter);
 app.use('/activities', activitiesRouter);
+app.use('/modify', modifyRouter);
 app.use('/error', errorRouter);
 
 // catch 404 and forward to error handler
