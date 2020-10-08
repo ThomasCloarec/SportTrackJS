@@ -22,7 +22,8 @@ router.post('/', function (req, res, next) {
             user_dao.findByKey(req.body.email, function (err, rows) {
                 if (err) {
                     sess.error = err;
-
+                    sess.return = '/connect';
+                    res.redirect('/error');
                 } else if (rows) {
                     if (rows.pwd === req.body.pwd) {
                         sess.connected_user = req.body.email
@@ -33,12 +34,11 @@ router.post('/', function (req, res, next) {
 
                     } else {
                         sess.error = 'Mot de passe incorrect';
+                        sess.return = '/connect';
+                        res.redirect('/error');
                     }
                 } else {
                     sess.error = 'Veuillez renseigner un email existant';
-                }
-
-                if (sess.error) {
                     sess.return = '/connect';
                     res.redirect('/error');
                 }
