@@ -45,9 +45,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
 
-    if (req.body.page === '/') {
-        res.redirect('/')
-    } else if (req.body.resetAccount) {
+    if (req.body.resetAccount) {
 
         let email = req.body.resetAccount;
 

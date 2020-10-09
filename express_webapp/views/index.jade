@@ -232,36 +232,30 @@ html(lang='fr')
         .container-scroller
             nav.navbar.navbar-expand-lg.navbar-light.fixed-top(style='background: white; border-bottom: 1px solid #ff7b00')
                 .navbar-collapse.collapse
-                    form.navbar-nav.mr-auto(action='' method='post')
-                        input(type='hidden' name='page' value='/')
+                    a(href='/')
                         button.navbar-brand(type='submit' style='background: transparent; border: 0px solid transparent;')
                             img.img-fluid(style='max-height: 50px;' src='resources/img/sport_track.png')
                             span(style='color: #ff7b00;')
                                 b  SportTrack
                 if admin
-                    form.mr-3(action='' method='POST')
-                        input(type='hidden' name='page' value='admin')
+                    a(href='/admin')
                         button.btn.btn-block.btn-primary.return(type='submit') Administration
                     form(action='' method='POST')
                         input(type='hidden' name='page' value='user_disconnect')
                         button.btn.btn-block.btn-primary.return(type='submit') Se déconnecter
                 else
                     if connected_user
-                        form.mr-3(action='' method='POST')
-                            input(type='hidden' name='page' value='/activities')
+                        a(href='/activities')
                             button.btn.btn-block.btn-primary.return(type='submit') Mes activités
-                        form.mr-3(action='' method='POST')
-                            input(type='hidden' name='page' value='/modify')
+                        a(href='/modify')
                             button.btn.btn-block.btn-primary.return(type='submit') Mon compte
                         form(action='' method='POST')
                             input(type='hidden' name='page' value='user_disconnect')
                             button.btn.btn-block.btn-primary.return(type='submit') Se déconnecter
                     else
-                        form.mr-3(action='' method='POST')
-                            input(type='hidden' name='page' value='/users')
+                        a(href='/users')
                             button.btn.btn-block.btn-primary.return(type='submit') S'inscrire
-                        form(action='' method='POST')
-                            input(type='hidden' name='page' value='/connect')
+                        a(href='/connect')
                             button.btn.btn-block.btn-primary.return(type='submit') Se connecter
             .container-fluid.page-body-wrapper
                 .main-panel

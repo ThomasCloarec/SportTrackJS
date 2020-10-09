@@ -19,7 +19,6 @@ html(lang='fr')
                                         | Vous êtes désormais connecté en tant que #{connected_user} .
                                 .row
                                     .col-12.mt-5.d-flex.justify-content-center
-                                        form(action='' method='POST')
-                                            input(type='hidden' name='page' value='/')
+                                        a(href='/')
                                             .col-12.mt-2.mb-2
                                                 button.btn.btn-primary(type='submit') Accueil

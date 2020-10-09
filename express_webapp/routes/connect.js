@@ -49,8 +49,6 @@ router.post('/', function (req, res, next) {
             sess.return = '/connect';
             res.redirect('/error');
         }
-    } else if (req.body.page === '/') {
-        res.redirect('/');
     }
 });
 

@@ -14,8 +14,6 @@ router.post('/', function (req, res, next) {
         req.session.connected_user = null
         req.session.admin = null
         res.redirect("/")
-    } else {
-        res.redirect(req.body.page)
     }
 });
 

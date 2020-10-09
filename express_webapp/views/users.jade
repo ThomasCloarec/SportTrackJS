@@ -57,10 +57,31 @@ html(lang='fr')
                                             input(type='hidden' name='page' value='user_add')
                                             .row.mt-3
                                                 .col-md-6.offset-md-0.mb-2.d-none.d-md-block
-                                                    a.btn.btn-block.btn-primary.return(style='cursor: pointer; color: white;' onclick="document.getElementById('submit-return').submit();") Retour
+                                                    a.btn.btn-block.btn-primary.return(style='cursor: pointer; color: white;' href='/') Retour
                                                 .col-10.offset-1.col-md-6.offset-md-0.mb-2
                                                     button.btn.btn-block.btn-primary(type='submit') S'inscrire
                                                 .mt-3.col-10.offset-1.mb-2.d-block.d-md-none
-                                                    a.btn.btn-block.btn-primary.return(style='cursor: pointer; color: white;' onclick="document.getElementById('submit-return').submit();") Retour
-                                        form#submit-return(action='' method='post')
-                                            input(type='hidden' name='page' value='/')
+                                                    a.btn.btn-block.btn-primary.return(style='cursor: pointer; color: white;' href='/') Retour
+
+                //table(border='1')
+                    thead
+                        tr
+                            th email
+                            th firstName
+                            th lastName
+                            th birthday
+                            th gender
+                            th height
+                            th weight
+                            th pwd
+                    tbody
+                        each val in data
+                            tr
+                                td= val.email
+                                td= val.firstName
+                                td= val.lastName
+                                td= val.birthday
+                                td= val.gender
+                                td= val.height
+                                td= val.weight
+                                td= val.pwd

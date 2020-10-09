@@ -36,8 +36,6 @@ router.post('/', function (req, res, next) {
             })
         } else if (req.body.page === "list_activities") {
             res.redirect('/activities')
-        } else if (req.body.page === '/') {
-            res.redirect('/');
         } else {
             var fstream;
             req.pipe(req.busboy);

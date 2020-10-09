@@ -28,10 +28,6 @@ router.post('/', function (req, res, next) {
             user_dao.findByKey(req.session.connected_user, (error, value) => {
                 res.render('modify', {user: value});
             })
-
-            if (req.body.page === '/') {
-                res.redirect('/');
-            }
         }
     } else {
         req.session.error = 'Accès interdit, veuillez vous connecter.';
