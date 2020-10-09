@@ -232,30 +232,30 @@ html(lang='fr')
         .container-scroller
             nav.navbar.navbar-expand-lg.navbar-light.fixed-top(style='background: white; border-bottom: 1px solid #ff7b00')
                 .navbar-collapse.collapse
-                    a(href='/')
+                    a(href='/' style='text-decoration: none;')
                         button.navbar-brand(type='submit' style='background: transparent; border: 0px solid transparent;')
                             img.img-fluid(style='max-height: 50px;' src='resources/img/sport_track.png')
                             span(style='color: #ff7b00;')
                                 b  SportTrack
                 if admin
-                    a(href='/admin')
+                    a(href='/admin' style='text-decoration: none;')
                         button.btn.btn-block.btn-primary.return(type='submit') Administration
                     form(action='' method='POST')
                         input(type='hidden' name='page' value='user_disconnect')
                         button.btn.btn-block.btn-primary.return(type='submit') Se déconnecter
                 else
                     if connected_user
-                        a(href='/activities')
+                        a(href='/activities' style='text-decoration: none;')
                             button.btn.btn-block.btn-primary.return(type='submit') Mes activités
-                        a(href='/modify')
+                        a(href='/modify' style='text-decoration: none;')
                             button.btn.btn-block.btn-primary.return(type='submit') Mon compte
                         form(action='' method='POST')
                             input(type='hidden' name='page' value='user_disconnect')
                             button.btn.btn-block.btn-primary.return(type='submit') Se déconnecter
                     else
-                        a(href='/users')
+                        a(href='/users' style='text-decoration: none;')
                             button.btn.btn-block.btn-primary.return(type='submit') S'inscrire
-                        a(href='/connect')
+                        a(href='/connect' style='text-decoration: none;')
                             button.btn.btn-block.btn-primary.return(type='submit') Se connecter
             .container-fluid.page-body-wrapper
                 .main-panel
