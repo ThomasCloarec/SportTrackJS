@@ -28,7 +28,7 @@ router.post('/', function (req, res, next) {
                 } else if (rows) {
                     if (bcrypt.compareSync(req.body.pwd, rows.pwd)) {
                         sess.connected_user = req.body.email
-                        if (admins.includes(rows.email)) {
+                        if (admins.includes(req.body.email)) {
                             sess.admin = rows.email
                         }
                         res.render('connectValidation', {connected_user: sess.connected_user});

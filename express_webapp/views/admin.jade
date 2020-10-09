@@ -1,9 +1,4 @@
 doctype html
-//
-  ?php
-  require_once 'model/ActivityDAO.php';
-  require_once 'model/SportsmanDAO.php';
-  ?
 html(lang='fr')
     head
         meta(charset='utf-8')
@@ -61,35 +56,33 @@ html(lang='fr')
 
                                     each val in data
 
-                                        | getEmail() !== "admin@sporttrack.fr") {
-                                        | $activities = ActivityDAO::getInstance()->findAllFromSportsman($key->getEmail());
-                                        | ?>
-                                        .row.pt-3.pb-3.justify-content-center
-                                            span.col-xl-2.d-flex.align-items-center
-                                                span.text-center.w-100
-                                                    | #{val.firstname}
-                                            span.col-xl-2.d-flex.align-items-center.col-separator
-                                                span.text-center.w-100
-                                                    | #{val.lastname}
-                                            span.col-xl-2.d-flex.align-items-center.col-separator
-                                                span.text-center.w-100
-                                                    | #{val.email}
-                                            span.col-xl-2.d-flex.align-items-center.col-separator
-                                                span.text-center.w-100
-                                                    // ?php echo round(ActivityDAO::getInstance()-
-                                                    | findDistanceSumFromSportsman($key->getEmail()), 2, PHP_ROUND_HALF_UP); ?>
-                                            span.col-xl-2.d-flex.align-items-center.col-separator
-                                                span.text-center.w-100
-                                                    form.col-12(action='' method='POST')
-                                                        input(type='hidden' name='page' value='admin_action')
-                                                        input(type='hidden' name='reset-account' value='<?php echo $key->getEmail(); ?>')
-                                                        button.col-8.offset-2.btn.btn-primary.btn-block Réinitialiser le compte
-                                            span.col-xl-2.d-flex.align-items-center.col-separator
-                                                span.text-center.w-100
-                                                    form.col-12(action='' method='POST')
-                                                        input(type='hidden' name='page' value='admin_action')
-                                                        input(type='hidden' name='delete-account' value='<?php echo $key->getEmail(); ?>')
-                                                        button.col-8.offset-2.btn.btn-danger.btn-block Supprimer le compte
+                                        if val.email !== "admin@sporttrack.fr"
+
+                                            .row.pt-3.pb-3.justify-content-center
+                                                span.col-xl-2.d-flex.align-items-center
+                                                    span.text-center.w-100
+                                                        | #{val.firstName}
+                                                span.col-xl-2.d-flex.align-items-center.col-separator
+                                                    span.text-center.w-100
+                                                        | #{val.lastName}
+                                                span.col-xl-2.d-flex.align-items-center.col-separator
+                                                    span.text-center.w-100
+                                                        | #{val.email}
+                                                span.col-xl-2.d-flex.align-items-center.col-separator
+                                                    span.text-center.w-100
+                                                        | #{Math.round(val.totalDistance * 100) / 100} kilomètres
+                                                span.col-xl-2.d-flex.align-items-center.col-separator
+                                                    span.text-center.w-100
+                                                        form.col-12(action='' method='POST')
+                                                            input(type='hidden' name='page' value='admin')
+                                                            input(type='hidden' name='resetAccount' value='#{val.email}')
+                                                            button.col-8.offset-2.btn.btn-primary.btn-block Réinitialiser le compte
+                                                span.col-xl-2.d-flex.align-items-center.col-separator
+                                                    span.text-center.w-100
+                                                        form.col-12(action='' method='POST')
+                                                            input(type='hidden' name='page' value='admin')
+                                                            input(type='hidden' name='deleteAccount' value='#{val.email}')
+                                                            button.col-8.offset-2.btn.btn-danger.btn-block Supprimer le compte
 
                                 .col-10.offset-1.mt-5.text-center.d-block.d-xl-none
                                     | Vous ne pouvez pas consulter la liste des comptes sur smartphone et tablette !
