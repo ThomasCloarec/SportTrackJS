@@ -45,8 +45,6 @@ activity.data = [
     {"time": "13:00:25", "cardio_frequency": 103, "latitude": 47.648510, "longitude": -2.780145, "altitude": 16}
 ]
 
-console.log(calculatePathDistance(activity))
-
 
 module.exports = {
     calculatePathDistance: calculatePathDistance

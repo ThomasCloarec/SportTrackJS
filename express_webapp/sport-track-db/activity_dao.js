@@ -34,6 +34,7 @@ const ActivityDAO = function () {
     };
 
     this.deleteAll = function (callback) {
+        db.run("DELETE FROM ActivityEntry", callback);
         db.run("DELETE FROM Activity", callback);
     }
 

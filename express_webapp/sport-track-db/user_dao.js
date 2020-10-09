@@ -1,8 +1,9 @@
 const db = require('./sqlite_connection');
+const bcrypt = require('bcrypt');
 
 const UserDAO = function () {
     this.update = function (key, values, callback) {
-        db.run("UPDATE Sportsman SET email = ?, firstName = ?, lastName = ?, birthday = ?, gender = ?, height = ?, weight = ?, pwd = ? WHERE email = ?",
+        db.run("UPDATE Sportsman SET email = ?, firstName = ?, lastName = ?, birthday = ?, gender = ?, height = ?, weight = ? WHERE email = ?",
             [
                 values.email,
                 values.firstName,
@@ -11,14 +12,25 @@ const UserDAO = function () {
                 values.gender,
                 values.height,
                 values.weight,
-                values.pwd,
                 key
             ],
             callback
         );
+
+        if (values.pwd) {
+            db.run("UPDATE Sportsman SET pwd = ? WHERE email = ?",
+                [
+                    bcrypt.hashSync(values.pwd, 10),
+                    key
+                ],
+                callback
+            );
+        }
     };
 
     this.deleteAll = function (callback) {
+        db.run("DELETE FROM ActivityEntry", callback);
+        db.run("DELETE FROM Activity", callback);
         db.run("DELETE FROM Sportsman", callback);
     }
 
@@ -52,7 +64,7 @@ const UserDAO = function () {
                 values.gender,
                 values.height,
                 values.weight,
-                values.pwd
+                bcrypt.hashSync(values.pwd, 10)
             ],
             callback
         );
