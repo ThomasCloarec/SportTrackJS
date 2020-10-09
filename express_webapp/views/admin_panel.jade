@@ -1,0 +1,100 @@
+doctype html
+//
+  ?php
+  require_once 'model/ActivityDAO.php';
+  require_once 'model/SportsmanDAO.php';
+  ?
+html(lang='fr')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title Administration
+        // CSS THEME
+        link(rel='stylesheet' href='resources/css/vendor.bundle.base.css')
+        link(rel='stylesheet' href='resources/css/style.css')
+        link(rel='stylesheet' href='resources/iconfonts/font-awesome/css/font-awesome.min.css')
+        style.
+            .col-separator {
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+            }
+            .striped div:nth-child(even) {
+                background-color: #ddd !important;
+            }
+            .striped div:nth-child(even) .col-separator {
+                border-left: 1px solid rgba(0, 0, 0, 0.2);
+            }
+    body#body
+        .container-scroller
+            // PAGE CONTENT
+            nav.navbar.navbar-expand-lg.navbar-light.fixed-top(style='background: white; border-bottom: 1px solid #ff7b00')
+                form(action='' method='post')
+                    input(type='hidden' name='page' value='/')
+                    button.navbar-brand(type='submit' style='background: transparent; border: 0px solid transparent; color: #ff7b00;')
+                        span.fa.fa-arrow-left
+                        b Retour
+            .container-fluid.page-body-wrapper
+                .main-panel
+                    // CONTENT WRAPPER
+                    .home-wrapper
+                        .row.mt-5
+                        .row.mt-5
+                            .col-12.text-center
+                                h2 Gestion des comptes
+                        .row.mt-5.mb-5
+
+                            if data
+
+                                .col-xl-10.offset-xl-1.d-none.d-xl-block.striped
+                                    .row.pt-3.pb-3.justify-content-center
+                                        span.col-xl-2.text-center
+                                            b Prénom
+                                        span.col-xl-2.text-center.col-separator
+                                            b Nom
+                                        span.col-xl-2.text-center.col-separator
+                                            b Email
+                                        span.col-xl-2.text-center.col-separator
+                                            b Distance parcourue
+                                        span.col-xl-2.text-center.col-separator
+                                            b Modération
+                                        span.col-xl-2.text-center.col-separator
+                                            b Action
+
+                                    each val in data
+
+                                        | getEmail() !== "admin@sporttrack.fr") {
+                                        | $activities = ActivityDAO::getInstance()->findAllFromSportsman($key->getEmail());
+                                        | ?>
+                                        .row.pt-3.pb-3.justify-content-center
+                                            span.col-xl-2.d-flex.align-items-center
+                                                span.text-center.w-100
+                                                    | #{val.firstname}
+                                            span.col-xl-2.d-flex.align-items-center.col-separator
+                                                span.text-center.w-100
+                                                    | #{val.lastname}
+                                            span.col-xl-2.d-flex.align-items-center.col-separator
+                                                span.text-center.w-100
+                                                    | #{val.email}
+                                            span.col-xl-2.d-flex.align-items-center.col-separator
+                                                span.text-center.w-100
+                                                    // ?php echo round(ActivityDAO::getInstance()-
+                                                    | findDistanceSumFromSportsman($key->getEmail()), 2, PHP_ROUND_HALF_UP); ?>
+                                            span.col-xl-2.d-flex.align-items-center.col-separator
+                                                span.text-center.w-100
+                                                    form.col-12(action='' method='POST')
+                                                        input(type='hidden' name='page' value='admin_action')
+                                                        input(type='hidden' name='reset-account' value='<?php echo $key->getEmail(); ?>')
+                                                        button.col-8.offset-2.btn.btn-primary.btn-block Réinitialiser le compte
+                                            span.col-xl-2.d-flex.align-items-center.col-separator
+                                                span.text-center.w-100
+                                                    form.col-12(action='' method='POST')
+                                                        input(type='hidden' name='page' value='admin_action')
+                                                        input(type='hidden' name='delete-account' value='<?php echo $key->getEmail(); ?>')
+                                                        button.col-8.offset-2.btn.btn-danger.btn-block Supprimer le compte
+
+                                .col-10.offset-1.mt-5.text-center.d-block.d-xl-none
+                                    | Vous ne pouvez pas consulter la liste des comptes sur smartphone et tablette !
+
+                            else
+
+                                .col-10.offset-1.mt-5.text-center.d-none.d-xl-block
+                                    | Aucun compte n'a été enregistré !

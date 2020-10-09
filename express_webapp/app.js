@@ -14,6 +14,7 @@ var connectRouter = require('./routes/connect');
 var activitiesRouter = require('./routes/activities');
 var modifyRouter = require('./routes/modify');
 var errorRouter = require('./routes/error');
+var adminPanel = require('./routes/admin');
 
 // app instanciation
 var app = express();
@@ -45,6 +46,7 @@ app.use('/connect', connectRouter);
 app.use('/activities', activitiesRouter);
 app.use('/modify', modifyRouter);
 app.use('/error', errorRouter);
+app.use('/panel', adminPanel);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
