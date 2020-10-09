@@ -239,8 +239,9 @@ html(lang='fr')
                             span(style='color: #ff7b00;')
                                 b  SportTrack
                 if admin
-                    input(type='hidden' name='page' value='admin_panel')
-                    button.btn.btn-block.btn-primary.return(type='submit') Administration
+                    form.mr-3(action='' method='POST')
+                        input(type='hidden' name='page' value='admin_panel')
+                        button.btn.btn-block.btn-primary.return(type='submit') Administration
                     form(action='' method='POST')
                         input(type='hidden' name='page' value='user_disconnect')
                         button.btn.btn-block.btn-primary.return(type='submit') Se déconnecter
