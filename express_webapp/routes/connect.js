@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
 
     sess = req.session;
     if (req.body.page === 'user_connect') {
-        if (req.body.email) {
+        if (req.body.email && req.body.pwd) {
             user_dao.findByKey(req.body.email, function (err, rows) {
                 if (err) {
                     sess.error = err;
@@ -34,18 +34,18 @@ router.post('/', function (req, res, next) {
                         res.render('connectValidation', {connected_user: sess.connected_user});
 
                     } else {
-                        sess.error = 'Mot de passe incorrect';
+                        sess.error = 'Adresse mail ou mot de passe incorrect.';
                         sess.return = '/connect';
                         res.redirect('/error');
                     }
                 } else {
-                    sess.error = 'Veuillez renseigner un email existant';
+                    sess.error = 'Adresse mail ou mot de passe incorrect.';
                     sess.return = '/connect';
                     res.redirect('/error');
                 }
             })
         } else {
-            sess.error = 'Veuillez renseigner un email';
+            sess.error = 'Un ou plusieurs champs n\'ont pas été remplis correctement.';
             sess.return = '/connect';
             res.redirect('/error');
         }

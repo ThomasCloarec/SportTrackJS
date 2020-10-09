@@ -15,7 +15,36 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
 
     if (req.body.page === 'user_add' && req.body.email !== "") {
-        user_dao.insert(req.body)
+
+        sess = req.session;
+
+        user_dao.findByKey(email, function (err, rows) {
+
+            if (err) {
+                sess.error = err;
+                sess.return = '/users';
+                res.redirect('/error');
+            } else if (rows) {
+                sess.error = 'Cette adresse email est déjà renseignée.';
+                sess.return = '/users';
+                res.redirect('/error');
+            } else {
+
+                if (req.body.lastName && req.body.firstName && req.body.birthday && req.body.gender && req.body.height && req.body.weight && req.body.pwd) {
+
+                    user_dao.insert(req.body)
+
+                } else {
+
+                    sess.error = 'Un ou plusieurs champs n\'ont pas été remplis correctement';
+                    sess.return = '/users';
+                    res.redirect('/error');
+
+                }
+
+            }
+
+        })
     }
 
     user_dao.findAll(function (err, rows) {
