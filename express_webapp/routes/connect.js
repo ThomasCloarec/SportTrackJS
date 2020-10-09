@@ -40,10 +40,6 @@ router.post('/', function (req, res, next) {
                     }
                 } else {
                     sess.error = 'Veuillez renseigner un email existant';
-                    sess.error = 'Email ou mot de passe incorrect';
-                }
-
-                if (sess.error) {
                     sess.return = '/connect';
                     res.redirect('/error');
                 }
