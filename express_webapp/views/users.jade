@@ -64,26 +64,3 @@ html(lang='fr')
                                                     a.btn.btn-block.btn-primary.return(style='cursor: pointer; color: white;' onclick="document.getElementById('submit-return').submit();") Retour
                                         form#submit-return(action='' method='post')
                                             input(type='hidden' name='page' value='/')
-
-                //table(border='1')
-                    thead
-                        tr
-                            th email
-                            th firstName
-                            th lastName
-                            th birthday
-                            th gender
-                            th height
-                            th weight
-                            th pwd
-                    tbody
-                        each val in data
-                            tr
-                                td= val.email
-                                td= val.firstName
-                                td= val.lastName
-                                td= val.birthday
-                                td= val.gender
-                                td= val.height
-                                td= val.weight
-                                td= val.pwd

@@ -14,46 +14,41 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
 
-    if (req.body.page === 'user_add' && req.body.email !== "") {
+    sess = req.session;
 
-        sess = req.session;
+    if (req.body.page === 'user_add') {
 
-        user_dao.findByKey(email, function (err, rows) {
+        if (req.body.email && req.body.lastName && req.body.firstName && req.body.birthday && req.body.gender && req.body.height && req.body.weight && req.body.pwd) {
 
-            if (err) {
-                sess.error = err;
-                sess.return = '/users';
-                res.redirect('/error');
-            } else if (rows) {
-                sess.error = 'Cette adresse email est déjà renseignée.';
-                sess.return = '/users';
-                res.redirect('/error');
-            } else {
+            user_dao.findByKey(req.body.email, function (err, rows) {
 
-                if (req.body.lastName && req.body.firstName && req.body.birthday && req.body.gender && req.body.height && req.body.weight && req.body.pwd) {
-
-                    user_dao.insert(req.body)
-
-                } else {
-
-                    sess.error = 'Un ou plusieurs champs n\'ont pas été remplis correctement';
+                if (err) {
+                    sess.error = err;
                     sess.return = '/users';
                     res.redirect('/error');
+                } else if (rows) {
+                    sess.error = 'Cette adresse email est déjà renseignée.';
+                    sess.return = '/users';
+                    res.redirect('/error');
+                } else {
+
+                    user_dao.insert(req.body)
+                    sess.connected_user = req.body.email;
+                    res.render('connectValidation', {connected_user: sess.connected_user});
 
                 }
 
-            }
+            })
 
-        })
-    }
-
-    user_dao.findAll(function (err, rows) {
-        if (err != null) {
-            console.log("ERROR= " + err);
         } else {
-            res.render('users', {data: rows});
+
+            sess.error = 'Un ou plusieurs champs sont incomplets';
+            sess.return = '/users';
+            res.redirect('/error');
+
         }
-    });
+
+    }
 
     if (req.body.page === '/') {
         res.redirect('/');

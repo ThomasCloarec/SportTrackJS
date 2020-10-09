@@ -45,7 +45,7 @@ router.post('/', function (req, res, next) {
                 }
             })
         } else {
-            sess.error = 'Un ou plusieurs champs n\'ont pas été remplis correctement.';
+            sess.error = 'Un ou plusieurs champs sont incomplets';
             sess.return = '/connect';
             res.redirect('/error');
         }
