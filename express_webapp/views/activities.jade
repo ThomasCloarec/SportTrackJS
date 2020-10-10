@@ -42,7 +42,7 @@ html(lang='fr')
                                 form(action='' method='POST' enctype='multipart/form-data')
                                     .form-group
                                         label Fichier d\'activité :
-                                        input#activity-file.file-upload-default(onchange="document.getElementById('activity-file-name').value = this.value" type='file' name='activity-file')
+                                        input#activity-file.file-upload-default(onchange="document.getElementById('activity-file-name').value = this.value.replace(/C:\\\\fakepath\\\\/, '')" type='file' name='activity-file')
                                         .col-12.input-group(style='padding: 0px;')
                                             input#activity-file-name.form-control(type='text' disabled='' name='activity-file-name')
                                             span.input-group-append
