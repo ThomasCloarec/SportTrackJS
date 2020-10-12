@@ -83,6 +83,38 @@ html(lang='fr')
                                                             input(type='hidden' name='deleteAccount' value='#{val.email}')
                                                             button.col-8.offset-2.btn.btn-danger.btn-block Supprimer le compte
 
+                                    if dataWithZero
+
+                                        each val in dataWithZero
+
+                                            if val.email !== "admin@sporttrack.fr"
+
+                                                .row.pt-3.pb-3.justify-content-center
+                                                    span.col-xl-2.d-flex.align-items-center
+                                                        span.text-center.w-100
+                                                            | #{val.firstName}
+                                                    span.col-xl-2.d-flex.align-items-center.col-separator
+                                                        span.text-center.w-100
+                                                            | #{val.lastName}
+                                                    span.col-xl-2.d-flex.align-items-center.col-separator
+                                                        span.text-center.w-100
+                                                            | #{val.email}
+                                                    span.col-xl-2.d-flex.align-items-center.col-separator
+                                                        span.text-center.w-100
+                                                            | 0 kilomètres
+                                                    span.col-xl-2.d-flex.align-items-center.col-separator
+                                                        span.text-center.w-100
+                                                            form.col-12(action='' method='POST')
+                                                                input(type='hidden' name='page' value='admin')
+                                                                input(type='hidden' name='resetAccount' value='#{val.email}')
+                                                                button.col-8.offset-2.btn.btn-primary.btn-block Réinitialiser le compte
+                                                    span.col-xl-2.d-flex.align-items-center.col-separator
+                                                        span.text-center.w-100
+                                                            form.col-12(action='' method='POST')
+                                                                input(type='hidden' name='page' value='admin')
+                                                                input(type='hidden' name='deleteAccount' value='#{val.email}')
+                                                                button.col-8.offset-2.btn.btn-danger.btn-block Supprimer le compte
+
                                 .col-10.offset-1.mt-5.text-center.d-block.d-xl-none
                                     | Vous ne pouvez pas consulter la liste des comptes sur smartphone et tablette !
 

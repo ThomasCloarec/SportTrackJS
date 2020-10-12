@@ -7,11 +7,10 @@ const activity_entry_dao = require("../sport-track-db/sport-track-db.js").activi
 router.get('/', function (req, res, next) {
 
     sess = req.session;
-    console.log(sess.admin);
 
     if (sess.admin) {
 
-        user_dao.findAll(function(err, rows) {
+        user_dao.findAllSortByTotalDistance(function(err, rows) {
 
             if(err) {
 
@@ -21,7 +20,27 @@ router.get('/', function (req, res, next) {
 
             } else if (rows) {
 
-                res.render('admin', {data: rows})
+                user_dao.findAllWithDistanceEqualZero(function (errWithDistanceEqualZero, rowsWithDistanceEqualZero) {
+
+                    if (errWithDistanceEqualZero) {
+
+                        sess.error = errWithDistanceEqualZero;
+                        sess.return = '/';
+                        res.redirect('/error');
+
+                    } else if (rowsWithDistanceEqualZero) {
+
+                        res.render('admin', {data: rows, dataWithZero: rowsWithDistanceEqualZero})
+
+                    } else {
+
+                        sess.error = 'Impossible de retrouver la liste de comptes';
+                        sess.return = '/';
+                        res.redirect('/error');
+
+                    }
+
+                })
 
             } else {
 
@@ -59,16 +78,12 @@ router.post('/', function (req, res, next) {
 
             } else if (rows) {
 
-                for (let r in rows) {
-                    activity_entry_dao.deleteFromActivity(r.idActivity);
-                    activity_dao.delete(r.idActivity);
+                if (rows.length > 0) {
+                    for (let r in rows) {
+                        activity_entry_dao.deleteFromActivity(rows[r].idActivity);
+                        activity_dao.delete(rows[r].idActivity);
+                    }
                 }
-
-            } else {
-
-                sess.error = 'Impossible de réinitialiser le compte : compte non trouvé';
-                sess.return = '/';
-                res.redirect('/error');
 
             }
 
@@ -89,8 +104,8 @@ router.post('/', function (req, res, next) {
             } else if (rows) {
 
                 for (let r in rows) {
-                    activity_entry_dao.deleteFromActivity(r.idActivity);
-                    activity_dao.delete(r.idActivity);
+                    activity_entry_dao.deleteFromActivity(rows[r].idActivity);
+                    activity_dao.delete(rows[r].idActivity);
                 }
 
             } else {
@@ -107,28 +122,7 @@ router.post('/', function (req, res, next) {
 
     }
 
-    user_dao.findAll(function(err, rows) {
-
-        if(err) {
-
-            sess.error = err;
-            sess.return = '/';
-            res.redirect('/error');
-
-        } else if (rows) {
-
-            res.render('admin', {data: rows})
-
-        } else {
-
-            sess.error = 'Impossible de retrouver la liste de comptes';
-            sess.return = '/';
-            res.redirect('/error');
-
-        }
-
-    });
-
+    res.render('actionAdminValidation');
 
 });
 

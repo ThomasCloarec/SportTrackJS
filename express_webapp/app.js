@@ -50,7 +50,7 @@ app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    req.session.error = "Page introuvable, erreur 404.";
+    req.session.error = "404 : Page introuvable.";
     req.session.return = "/";
 
     next(createError(404));

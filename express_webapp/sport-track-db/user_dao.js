@@ -50,6 +50,10 @@ const UserDAO = function () {
         db.all("select email, firstName, lastName, SUM(totalDistance) as totalDistance from Sportsman, Activity where sportsman = email group by email, firstName, lastName order by SUM(totalDistance) desc", callback);
     };
 
+    this.findAllWithDistanceEqualZero = function (callback) {
+        db.all("select email, firstName, lastName from Sportsman where email not in (select sportsman as email from Activity) group by email, firstName, lastName", callback);
+    };
+
     this.findByKey = function (key, callback) {
         db.get("SELECT * FROM Sportsman WHERE email = ?",
             [
