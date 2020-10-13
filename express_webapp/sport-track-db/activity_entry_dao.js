@@ -1,6 +1,13 @@
 const db = require('./sqlite_connection');
 
 const ActivityEntryDAO = function () {
+
+    /**
+     * This method allows to insert a new ActivityEntry from its object
+     *
+     * @param values - The values to insert
+     */
+
     this.insert = function (values, callback) {
         db.run("INSERT OR IGNORE INTO ActivityEntry(activity, timeD, cardioFrequency, latitude, longitude, altitude) values (?, ?, ?, ?, ?, ?)",
             [
@@ -20,6 +27,13 @@ const ActivityEntryDAO = function () {
             }
         );
     };
+
+    /**
+     * This unction allows to insert multiple rows into the database
+     *
+     * @param rows_values - All the rows to insert
+     * @param callback - The callback function
+     */
 
     this.insertAll = function (rows_values, callback) {
         let sql = "INSERT OR IGNORE INTO ActivityEntry(activity, timeD, cardioFrequency, latitude, longitude, altitude) values";
@@ -44,6 +58,14 @@ const ActivityEntryDAO = function () {
         );
     };
 
+    /**
+     * This method allows to update an ActivityEntry from its object
+     *
+     * @param key - The id of the activity entry to update
+     * @param values - The values to update
+     * @param - callback
+     */
+
     this.update = function (key, values, callback) {
         db.run("update ActivityEntry set activity = ?, timeD = ?, cardioFrequency = :?, latitude = ?, longitude = ?, altitude = ? where idActivtyEntry = ?",
             [
@@ -59,10 +81,12 @@ const ActivityEntryDAO = function () {
         );
     };
 
-    this.deleteAll = function (callback) {
-        db.run("DELETE FROM ActivityEntry", callback);
-        db.run("DELETE FROM Activity", callback);
-    }
+    /**
+     * This method allows to delete all activity entries from an activity
+     *
+     * @param key - The activity entry to delete
+     * @parama callback - The callback function
+     */
 
     this.deleteFromActivity = function (key, callback) {
         db.run("DELETE FROM ActivityEntry WHERE activity = ?",
@@ -73,9 +97,23 @@ const ActivityEntryDAO = function () {
         );
     };
 
+    /**
+     * This method allows to get all information of all activities entry
+     *
+     * @param callback - The callback function
+     * @return array
+     */
+
     this.findAll = function (callback) {
         db.all("SELECT * FROM ActivityEntry", callback);
     };
+
+    /**
+     * This method allows to get all information of all activities entry of an activity
+     *
+     * @param key - The id of the activity
+     * @return array
+     */
 
     this.findByKey = function (key, callback) {
         db.run("SELECT * FROM ACtivityEntry WHERE activity = ?",
