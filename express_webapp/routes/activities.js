@@ -43,12 +43,12 @@ router.post('/', function (req, res, next) {
                 console.log("Uploading: " + filename);
 
                 //Path where image will be uploaded
-                fstream = fs.createWriteStream(__dirname + '/img/' + filename);
+                fstream = fs.createWriteStream(__dirname + '/files/' + filename);
                 file.pipe(fstream);
                 fstream.on('close', function () {
                     console.log("Upload Finished of " + filename);
 
-                    var obj = JSON.parse(fs.readFileSync(__dirname + '/img/' + filename, 'utf8'));
+                    var obj = JSON.parse(fs.readFileSync(__dirname + '/files/' + filename, 'utf8'));
 
                     obj.activity.sportsman = req.session.connected_user
 
