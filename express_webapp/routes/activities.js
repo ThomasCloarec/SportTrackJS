@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const activity_dao = require("../../sport-track-db/sport-track-db.js").activity_dao;
-const activity_entry_dao = require("../../sport-track-db/sport-track-db.js").activity_entry_dao;
+const activity_dao = require("sport-track-db/sport-track-db.js").activity_dao;
+const activity_entry_dao = require("sport-track-db/sport-track-db.js").activity_entry_dao;
 const calculatePathDistance = require("./fonctions").calculatePathDistance;
 
 var busboy = require('connect-busboy'); //middleware for form/file upload
