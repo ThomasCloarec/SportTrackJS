@@ -128,8 +128,6 @@ router.post('/', function (req, res, next) {
 
         user_dao.delete(email);
 
-    } else {
-        res.redirect(req.body.page)
     }
 
     res.render('actionAdminValidation');

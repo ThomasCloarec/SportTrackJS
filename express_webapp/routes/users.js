@@ -79,8 +79,6 @@ router.post('/', function (req, res, next) {
 
         }
 
-    } else {
-        res.redirect(req.body.page)
     }
 });
 

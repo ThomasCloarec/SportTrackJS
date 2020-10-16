@@ -53,8 +53,6 @@ router.post('/', function (req, res, next) {
                 ret: '/connect'
             });
         }
-    } else {
-        res.redirect(req.body.page)
     }
 });
 

@@ -30,8 +30,6 @@ router.post('/', function (req, res, next) {
                 res.render('modify', {user: value});
             })
         }
-    } else if (req.body.page) {
-        res.redirect(req.body.page)
     } else {
         res.render('error', {
             err: 'Accès interdit, veuillez vous connecter.',
