@@ -18,9 +18,10 @@ router.get('/', function (req, res, next) {
             }
         });
     } else {
-        req.session.error = 'Accès interdit, veuillez vous connecter.';
-        req.session.return = '/';
-        res.redirect('/error');
+        res.render('error', {
+            err: 'Accès interdit, veuillez vous connecter.',
+            ret: '/'
+        });
     }
 });
 
@@ -72,9 +73,10 @@ router.post('/', function (req, res, next) {
             });
         }
     } else {
-        req.session.error = 'Accès interdit, veuillez vous connecter.';
-        req.session.return = '/';
-        res.redirect('/error');
+        res.render('error', {
+            err: 'Accès interdit, veuillez vous connecter.',
+            ret: '/'
+        });
     }
 });
 

@@ -39,7 +39,10 @@ router.post('/', function (req, res, next) {
             if (!add) {
 
                 sess.return = '/users';
-                res.redirect('/error');
+                res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
 
             } else {
 
@@ -48,11 +51,17 @@ router.post('/', function (req, res, next) {
                     if (err) {
                         sess.error = err;
                         sess.return = '/users';
-                        res.redirect('/error');
+                        res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
                     } else if (rows) {
                         sess.error = 'Cette adresse email est déjà renseignée.';
                         sess.return = '/users';
-                        res.redirect('/error');
+                        res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
                     } else {
 
                         user_dao.insert(req.body)
@@ -69,7 +78,10 @@ router.post('/', function (req, res, next) {
 
             sess.error = 'Un ou plusieurs champs sont incomplets';
             sess.return = '/users';
-            res.redirect('/error');
+            res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
 
         }
 

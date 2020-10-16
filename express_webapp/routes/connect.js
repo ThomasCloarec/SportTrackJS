@@ -24,7 +24,10 @@ router.post('/', function (req, res, next) {
                 if (err) {
                     sess.error = err;
                     sess.return = '/connect';
-                    res.redirect('/error');
+                    res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
                 } else if (rows) {
                     if (bcrypt.compareSync(req.body.pwd, rows.pwd)) {
                         sess.connected_user = req.body.email
@@ -36,18 +39,27 @@ router.post('/', function (req, res, next) {
                     } else {
                         sess.error = 'Adresse mail ou mot de passe incorrect.';
                         sess.return = '/connect';
-                        res.redirect('/error');
+                        res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
                     }
                 } else {
                     sess.error = 'Adresse mail ou mot de passe incorrect.';
                     sess.return = '/connect';
-                    res.redirect('/error');
+                    res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
                 }
             })
         } else {
             sess.error = 'Un ou plusieurs champs sont incomplets';
             sess.return = '/connect';
-            res.redirect('/error');
+            res.render('error', {
+        err: sess.error,
+        ret: sess.return
+    });
         }
     }
 });

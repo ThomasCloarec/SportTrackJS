@@ -14,9 +14,10 @@ router.get('/', function (req, res, next) {
 
             if(err) {
 
-                sess.error = err;
-                sess.return = '/';
-                res.redirect('/error');
+                res.render('error', {
+                    err: err,
+                    ret: '/'
+                });
 
             } else if (rows) {
 
@@ -24,9 +25,10 @@ router.get('/', function (req, res, next) {
 
                     if (errWithDistanceEqualZero) {
 
-                        sess.error = errWithDistanceEqualZero;
-                        sess.return = '/';
-                        res.redirect('/error');
+                        res.render('error', {
+                            err: errWithDistanceEqualZero,
+                            ret: '/'
+                        });
 
                     } else if (rowsWithDistanceEqualZero) {
 
@@ -34,9 +36,10 @@ router.get('/', function (req, res, next) {
 
                     } else {
 
-                        sess.error = 'Impossible de retrouver la liste de comptes';
-                        sess.return = '/';
-                        res.redirect('/error');
+                        res.render('error', {
+                            err: 'Impossible de retrouver la liste de comptes',
+                            ret: '/'
+                        });
 
                     }
 
@@ -44,9 +47,10 @@ router.get('/', function (req, res, next) {
 
             } else {
 
-                sess.error = 'Impossible de retrouver la liste de comptes';
-                sess.return = '/';
-                res.redirect('/error');
+                res.render('error', {
+                    err: 'Impossible de retrouver la liste de comptes',
+                    ret: '/'
+                });
 
             }
 
@@ -54,9 +58,10 @@ router.get('/', function (req, res, next) {
 
     } else {
 
-        sess.error = 'Vous n\'êtes pas autorisé à naviguer ici';
-        sess.return = '/';
-        res.redirect('/error');
+        res.render('error', {
+            err: 'Vous n\'êtes pas autorisé à naviguer ici',
+            ret: '/'
+        });
 
     }
 
@@ -72,9 +77,10 @@ router.post('/', function (req, res, next) {
 
             if(err) {
 
-                sess.error = err;
-                sess.return = '/';
-                res.redirect('/error');
+                res.render('error', {
+                    err: err,
+                    ret: '/'
+                });
 
             } else if (rows) {
 
@@ -97,9 +103,10 @@ router.post('/', function (req, res, next) {
 
             if(err) {
 
-                sess.error = err;
-                sess.return = '/';
-                res.redirect('/error');
+                res.render('error', {
+                    err: err,
+                    ret: '/'
+                });
 
             } else if (rows) {
 
@@ -110,9 +117,10 @@ router.post('/', function (req, res, next) {
 
             } else {
 
-                sess.error = 'Impossible de supprimer le compte : compte non trouvé';
-                sess.return = '/';
-                res.redirect('/error');
+                res.render('error', {
+                    err: 'Impossible de supprimer le compte : compte non trouvé',
+                    ret: '/'
+                });
 
             }
 
