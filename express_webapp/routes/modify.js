@@ -8,12 +8,10 @@ router.get('/', function (req, res, next) {
             res.render('modify', {user: value});
         })
     } else {
-        req.session.error = 'Accès interdit, veuillez vous connecter.';
-        req.session.return = '/';
         res.render('error', {
-        err: sess.error,
-        ret: sess.return
-    });
+            err: 'Accès interdit, veuillez vous connecter.',
+            ret: '/'
+        });
     }
 });
 
@@ -32,14 +30,15 @@ router.post('/', function (req, res, next) {
                 res.render('modify', {user: value});
             })
         }
+    } else if (req.body.page) {
+        res.redirect(req.body.page)
     } else {
-        req.session.error = 'Accès interdit, veuillez vous connecter.';
-        req.session.return = '/';
         res.render('error', {
-        err: sess.error,
-        ret: sess.return
-    });
+            err: 'Accès interdit, veuillez vous connecter.',
+            ret: '/'
+        });
     }
+
 });
 
 module.exports = router;

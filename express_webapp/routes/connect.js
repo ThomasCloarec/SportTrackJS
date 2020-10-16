@@ -22,12 +22,10 @@ router.post('/', function (req, res, next) {
         if (req.body.email && req.body.pwd) {
             user_dao.findByKey(req.body.email, function (err, rows) {
                 if (err) {
-                    sess.error = err;
-                    sess.return = '/connect';
                     res.render('error', {
-        err: sess.error,
-        ret: sess.return
-    });
+                        err: err,
+                        ret: '/connect'
+                    });
                 } else if (rows) {
                     if (bcrypt.compareSync(req.body.pwd, rows.pwd)) {
                         sess.connected_user = req.body.email
@@ -37,30 +35,26 @@ router.post('/', function (req, res, next) {
                         res.render('connectValidation', {connected_user: sess.connected_user});
 
                     } else {
-                        sess.error = 'Adresse mail ou mot de passe incorrect.';
-                        sess.return = '/connect';
                         res.render('error', {
-        err: sess.error,
-        ret: sess.return
-    });
+                            err: 'Adresse mail ou mot de passe incorrect.',
+                            ret: '/connect'
+                        });
                     }
                 } else {
-                    sess.error = 'Adresse mail ou mot de passe incorrect.';
-                    sess.return = '/connect';
                     res.render('error', {
-        err: sess.error,
-        ret: sess.return
-    });
+                        err: 'Adresse mail ou mot de passe incorrect.',
+                        ret: '/connect'
+                    });
                 }
             })
         } else {
-            sess.error = 'Un ou plusieurs champs sont incomplets';
-            sess.return = '/connect';
             res.render('error', {
-        err: sess.error,
-        ret: sess.return
-    });
+                err: 'Un ou plusieurs champs sont incomplets',
+                ret: '/connect'
+            });
         }
+    } else {
+        res.redirect(req.body.page)
     }
 });
 

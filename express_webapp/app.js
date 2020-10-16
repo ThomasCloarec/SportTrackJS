@@ -66,7 +66,10 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500);
 
     if (err.status === 404)
-        res.redirect('/error')
+        res.render('error', {
+            err: req.session.error,
+            ret: req.session.return
+        });
 });
 
 module.exports = app;

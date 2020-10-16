@@ -72,12 +72,15 @@ router.post('/', function (req, res, next) {
                 });
             });
         }
+    } else if (req.body.page) {
+        res.redirect(req.body.page)
     } else {
         res.render('error', {
             err: 'Accès interdit, veuillez vous connecter.',
             ret: '/'
         });
     }
+
 });
 
 module.exports = router;
