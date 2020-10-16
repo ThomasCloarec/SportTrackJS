@@ -20,7 +20,4 @@ html(lang='fr')
                                             | #{err ? err : "Ceci est une page d'erreur, veuillez retourner à l'accueil."}
                                 .row
                                     .col-12.mt-5.d-flex.justify-content-center
-                                        form(action='' method='POST')
-                                            input(type='hidden' name='page' value=ret ? ret : '/')
-                                            .col-12.mt-2.mb-2
-                                                button.btn.btn-primary(type='submit') Retour
+                                            a.btn.btn-primary(href=ret ? ret : '/' style='text-decoration: none; color: white;') Retour
