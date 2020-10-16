@@ -5,7 +5,6 @@ const activity_dao = require("sport-track-db/sport-track-db.js").activity_dao;
 const activity_entry_dao = require("sport-track-db/sport-track-db.js").activity_entry_dao;
 
 router.get('/', function (req, res, next) {
-
     sess = req.session;
 
     if (sess.admin) {
