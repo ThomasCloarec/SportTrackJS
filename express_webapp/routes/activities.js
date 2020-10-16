@@ -30,13 +30,11 @@ router.post('/', function (req, res, next) {
         if (req.body.page === "delete_activity") {
             activity_entry_dao.deleteFromActivity(req.body['activity-id'], null)
             activity_dao.delete(req.body['activity-id'], null);
-            res.redirect('/activities')
+            res.render('/activities')
         } else if (req.body.page === "activity_details") {
             activity_dao.findByKeyWithEntries(req.body["activity-id"], (error, value) => {
                 res.render("activity_entries", {activity: value})
             })
-        } else if (req.body.page === "list_activities") {
-            res.redirect('/activities')
         } else {
             var fstream;
             req.pipe(req.busboy);
