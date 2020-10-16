@@ -41,15 +41,16 @@ router.post('/', function (req, res, next) {
             var fstream;
             req.pipe(req.busboy);
             req.busboy.on('file', function (fieldname, file, filename) {
+                const filePath = __dirname + '/tmp_files/' + filename
                 console.log("Uploading: " + filename);
 
                 //Path where files will be uploaded
-                fstream = fs.createWriteStream(__dirname + '/files/' + filename);
+                fstream = fs.createWriteStream(filePath);
                 file.pipe(fstream);
                 fstream.on('close', function () {
                     console.log("Upload Finished of " + filename);
 
-                    var obj = JSON.parse(fs.readFileSync(__dirname + '/files/' + filename, 'utf8'));
+                    var obj = JSON.parse(fs.readFileSync(filePath));
 
                     obj.activity.sportsman = req.session.connected_user
 
@@ -66,6 +67,8 @@ router.post('/', function (req, res, next) {
                                 } else {
                                     res.render('activities', {data: activity_rows});
                                 }
+
+                                fs.unlinkSync(filePath);
                             });
                         })
                     })
