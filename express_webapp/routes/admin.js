@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const user_dao = require("../sport-track-db/sport-track-db.js").user_dao;
-const activity_dao = require("../sport-track-db/sport-track-db.js").activity_dao;
-const activity_entry_dao = require("../sport-track-db/sport-track-db.js").activity_entry_dao;
+const user_dao = require("../../sport-track-db/sport-track-db.js").user_dao;
+const activity_dao = require("../../sport-track-db/sport-track-db.js").activity_dao;
+const activity_entry_dao = require("../../sport-track-db/sport-track-db.js").activity_entry_dao;
 
 router.get('/', function (req, res, next) {
 

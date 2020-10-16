@@ -13,7 +13,6 @@ var usersRouter = require('./routes/users');
 var connectRouter = require('./routes/connect');
 var activitiesRouter = require('./routes/activities');
 var modifyRouter = require('./routes/modify');
-var errorRouter = require('./routes/error');
 var adminRouter = require('./routes/admin');
 
 // app instanciation
@@ -45,7 +44,7 @@ app.use('/users', usersRouter);
 app.use('/connect', connectRouter);
 app.use('/activities', activitiesRouter);
 app.use('/modify', modifyRouter);
-app.use('/error', errorRouter);
+app.use('/error', indexRouter);
 app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
@@ -65,6 +64,7 @@ app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
 
+    console.log(req.session.return)
     if (err.status === 404)
         res.render('error', {
             err: req.session.error,
