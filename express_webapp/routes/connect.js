@@ -6,13 +6,7 @@ const bcrypt = require('bcrypt');
 const admins = ["admin@sporttrack.fr"]
 
 router.get('/', function (req, res, next) {
-    user_dao.findAll(function (err, rows) {
-        if (err !== null) {
-            console.log("ERROR= " + err);
-        } else {
-            res.render('connect');
-        }
-    });
+    res.render('connect');
 });
 
 router.post('/', function (req, res, next) {
