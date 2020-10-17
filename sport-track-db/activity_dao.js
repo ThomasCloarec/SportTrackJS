@@ -105,15 +105,13 @@ const ActivityDAO = function () {
             if (activity_err !== null) {
                 console.log("ERROR= " + activity_err);
             } else {
-                activity_entry_dao.findAll(function (activity_entry_err, activity_entry_rows) {
+                activity_entry_dao.findByKey(activity.idActivity, function (activity_entry_err, activity_entry_rows) {
                     if (activity_entry_err !== null) {
                         console.log("ERROR= " + activity_entry_err);
                     } else {
                         activity.entries = []
                         activity_entry_rows.forEach((activity_entry) => {
-                            if (activity_entry.activity === activity.idActivity) {
-                                activity.entries.push(activity_entry)
-                            }
+                            activity.entries.push(activity_entry)
                         })
                         callback(activity_entry_err, activity)
                     }

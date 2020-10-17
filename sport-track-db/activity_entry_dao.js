@@ -116,7 +116,7 @@ const ActivityEntryDAO = function () {
      */
 
     this.findByKey = function (key, callback) {
-        db.run("SELECT * FROM ACtivityEntry WHERE activity = ?",
+        db.all("SELECT * FROM ActivityEntry WHERE activity = ?",
             [
                 key
             ],
