@@ -30,7 +30,13 @@ router.post('/', function (req, res, next) {
         if (req.body.page === "delete_activity") {
             activity_entry_dao.deleteFromActivity(req.body['activity-id'], null)
             activity_dao.delete(req.body['activity-id'], null);
-            res.render('/activities')
+            activity_dao.findAllFromSportsman(req.session.connected_user, function (activity_err, activity_rows) {
+                if (activity_err !== null) {
+                    console.log("ERROR= " + activity_err);
+                } else {
+                    res.render('activities', {data: activity_rows});
+                }
+            });
         } else if (req.body.page === "activity_details") {
             activity_dao.findByKeyWithEntries(req.body["activity-id"], (error, value) => {
                 res.render("activity_entries", {activity: value})
