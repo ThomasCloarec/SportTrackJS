@@ -22,8 +22,8 @@ app.use(busboy())
 
 // session
 app.use(session({
-    secret: 'mysecret',
-    cookie: {secure: false},
+    secret: '0oxDA_8?:65',
+    cookie: {secure: true},
     resave: true,
     saveUninitialized: true
 }));
