@@ -44,7 +44,6 @@ app.use('/users', usersRouter);
 app.use('/connect', connectRouter);
 app.use('/activities', activitiesRouter);
 app.use('/modify', modifyRouter);
-app.use('/error', indexRouter);
 app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
