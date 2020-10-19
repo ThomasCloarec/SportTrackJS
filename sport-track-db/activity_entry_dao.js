@@ -78,10 +78,12 @@ const ActivityEntryDAO = function () {
                 key
             ],
             function (err) {
-                if (err) {
-                    callback(false);
-                } else {
-                    callback(true);
+                if (callback) {
+                    if (err) {
+                        callback(false);
+                    } else {
+                        callback(true);
+                    }
                 }
             }
         );
@@ -99,11 +101,13 @@ const ActivityEntryDAO = function () {
             [
                 key
             ],
-            function(err) {
-                if (err) {
-                    callback(false)
-                } else {
-                    callback(true)
+            function (err) {
+                if (callback) {
+                    if (err) {
+                        callback(false)
+                    } else {
+                        callback(true)
+                    }
                 }
             }
         );

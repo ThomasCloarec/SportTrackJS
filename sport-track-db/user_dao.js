@@ -24,7 +24,7 @@ const UserDAO = function () {
                 key
             ],
             function (err) {
-                if (!values.pwd) {
+                if (!values.pwd && callback) {
                     if (err) {
                         callback(false)
                     } else {
@@ -41,10 +41,12 @@ const UserDAO = function () {
                     key
                 ],
                 function (err) {
-                    if (err) {
-                        callback(false)
-                    } else {
-                        callback(true)
+                    if (callback) {
+                        if (err) {
+                            callback(false)
+                        } else {
+                            callback(true)
+                        }
                     }
                 }
             );
@@ -63,11 +65,13 @@ const UserDAO = function () {
             [
                 key
             ],
-            function(err) {
-                if (err) {
-                    callback(false);
-                } else {
-                    callback(true);
+            function (err) {
+                if (callback) {
+                    if (err) {
+                        callback(false);
+                    } else {
+                        callback(true);
+                    }
                 }
             });
     };
