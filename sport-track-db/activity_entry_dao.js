@@ -77,7 +77,13 @@ const ActivityEntryDAO = function () {
                 values.altitude,
                 key
             ],
-            callback
+            function (err) {
+                if (err) {
+                    callback(false);
+                } else {
+                    callback(true);
+                }
+            }
         );
     };
 
@@ -93,7 +99,13 @@ const ActivityEntryDAO = function () {
             [
                 key
             ],
-            callback
+            function(err) {
+                if (err) {
+                    callback(false)
+                } else {
+                    callback(true)
+                }
+            }
         );
     };
 

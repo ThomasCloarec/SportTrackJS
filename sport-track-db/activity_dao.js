@@ -45,7 +45,13 @@ const ActivityDAO = function () {
                 values.totalDistance,
                 key
             ],
-            callback
+            function(err) {
+                if (err) {
+                    callback(false)
+                } else {
+                    callback(true)
+                }
+            }
         );
     };
 
@@ -61,7 +67,13 @@ const ActivityDAO = function () {
             [
                 key
             ],
-            callback
+            function (err) {
+                if (err) {
+                    callback(false)
+                } else {
+                    callback(true)
+                }
+            }
         );
     };
 

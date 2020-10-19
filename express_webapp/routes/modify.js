@@ -20,7 +20,7 @@ router.post('/', function (req, res, next) {
         if (req.body.page === "modify_account") {
             req.body.email = req.session.connected_user
 
-            user_dao.update(req.session.connected_user, req.body, (error, value) => {
+            user_dao.update(req.session.connected_user, req.body, (success) => {
                 user_dao.findByKey(req.session.connected_user, (error, value) => {
                     res.render('modify', {user: value});
                 });

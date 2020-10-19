@@ -23,7 +23,15 @@ const UserDAO = function () {
                 values.weight,
                 key
             ],
-            callback
+            function (err) {
+                if (!values.pwd) {
+                    if (err) {
+                        callback(false)
+                    } else {
+                        callback(true)
+                    }
+                }
+            }
         );
 
         if (values.pwd) {
@@ -32,7 +40,13 @@ const UserDAO = function () {
                     bcrypt.hashSync(values.pwd, 10),
                     key
                 ],
-                callback
+                function (err) {
+                    if (err) {
+                        callback(false)
+                    } else {
+                        callback(true)
+                    }
+                }
             );
         }
     };
@@ -49,7 +63,13 @@ const UserDAO = function () {
             [
                 key
             ],
-            callback);
+            function(err) {
+                if (err) {
+                    callback(false);
+                } else {
+                    callback(true);
+                }
+            });
     };
 
     /**
